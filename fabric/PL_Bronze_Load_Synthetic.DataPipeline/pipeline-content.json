@@ -1,0 +1,39 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "2afad4e9-b1e9-969c-4dda-238f329fdc6e",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "p_ingestion_batch_id": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "p_source_environment": {
+              "value": "synthetic",
+              "type": "string"
+            },
+            "p_seed": {
+              "value": "42",
+              "type": "int"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run_Bronze_Synthetic_Ingestion",
+        "dependsOn": []
+      }
+    ]
+  }
+}
