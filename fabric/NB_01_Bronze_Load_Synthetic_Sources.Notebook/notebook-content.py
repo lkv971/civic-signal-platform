@@ -30,7 +30,7 @@
 # p_ingestion_batch_id with the pipeline RunId.
 # ============================================================
 
-p_ingestion_batch_id = "7d3e6474-7416-4176-a8c0-db1a6550d42e"
+p_ingestion_batch_id = ""
 p_source_environment = "synthetic"
 p_seed = 42
 
@@ -1118,6 +1118,28 @@ display(
             completed_at_utc
         FROM bronze_ingestion_runs
         ORDER BY completed_at_utc DESC
+        """
+    )
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+display(
+    spark.sql(
+        """
+        SELECT
+            _ingestion_batch_id,
+            COUNT(*) AS raw_record_count
+        FROM bronze_raw_records
+        GROUP BY _ingestion_batch_id
+        ORDER BY _ingestion_batch_id
         """
     )
 )
