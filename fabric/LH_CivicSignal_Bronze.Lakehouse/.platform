@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "LH_CivicSignal_Bronze",
+    "description": "Raw landing layer for synthetic civic procurement source data. Preserves source-aligned records and ingestion metadata before validation or business transformation."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fea986e3-a199-a462-475c-d7189985f952"
+  }
+}
