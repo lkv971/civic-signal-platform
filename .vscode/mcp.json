@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "datafactory": {
+      "type": "stdio",
+      "command": "DataFactory.MCP",
+      "args": ["--pipeline"]
+    }
+  }
+}
