@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "LH_CivicSignal_Silver",
+    "description": "Validated and conformed layer for synthetic civic procurement data. Contains standardized entities, data-quality outputs, governed classifications, and reusable analytical datasets."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8d8f670d-2f64-8fe0-4c86-6c859acb4c25"
+  }
+}

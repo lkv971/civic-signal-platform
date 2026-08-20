@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "WH_CivicSignal_Gold",
+    "description": "Curated analytical serving layer for the Civic Signal reference platform. Contains dimensional models, analytical facts, marts, validation procedures, and governed outputs for Power BI and AI experiences."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "dfa33144-4034-9bd0-46df-e67a7d0f8c3d"
+  }
+}

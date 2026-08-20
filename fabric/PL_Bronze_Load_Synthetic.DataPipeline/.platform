@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "PL_Bronze_Load_Synthetic",
+    "description": "Orchestrates metadata-driven ingestion of synthetic civic procurement sources into the Civic Signal Bronze Lakehouse."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f532b49a-169c-80ef-43e9-a421e403029e"
+  }
+}
