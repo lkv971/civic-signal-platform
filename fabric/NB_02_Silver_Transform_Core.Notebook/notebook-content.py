@@ -943,7 +943,11 @@ merge_delta(
     ),
 )
 
-replace_run_rows(duplicate_candidates_df, SILVER_DUPLICATES_TABLE)
+duplicate_candidates_df.write \
+    .format("delta") \
+    .mode("overwrite") \
+    .option("overwriteSchema", "true") \
+    .saveAsTable(SILVER_DUPLICATES_TABLE)
 
 merge_delta(
     processing_run_df("Succeeded", published=True),
