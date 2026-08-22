@@ -1,100 +1,101 @@
+/// Current-state procurement opportunities used for Civic Signal discovery, trend, buyer, category, value, status, and quality analysis.
 table Opportunities
 	lineageTag: 72f9d3d0-838f-46c1-a319-705873007fd8
 	sourceLineageTag: [fact].[opportunity]
 
-	/// Number of opportunity records in the current filter context.
+	/// Total number of procurement opportunities in the current filter context.
 	measure 'Opportunity Count' = COUNTROWS('Opportunities')
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: baef17f4-0b53-4112-a6ce-e6baaadc4d13
 
-	/// Number of opportunities whose current status is Open.
+	/// Number of opportunities whose normalized status is Open.
 	measure 'Open Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'Opportunities'[status] = "Open"
+			    'Opportunities'[Status] = "Open"
 			)
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: a23a5bea-d6df-4748-a02f-437706bda0ba
 
-	/// Number of opportunities whose current status is Awarded.
+	/// Number of opportunities whose normalized status is Awarded.
 	measure 'Awarded Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'Opportunities'[status] = "Awarded"
+			    'Opportunities'[Status] = "Awarded"
 			)
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: ed4798c9-af90-4e80-84ca-ad4b5cfb9949
 
-	/// Number of opportunities whose current status is Cancelled.
+	/// Number of opportunities whose normalized status is Cancelled.
 	measure 'Cancelled Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'Opportunities'[status] = "Cancelled"
+			    'Opportunities'[Status] = "Cancelled"
 			)
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: f003b538-b1f3-4c97-92d9-1a1fe8577eb4
 
-	/// Number of opportunities flagged as potential duplicate candidates.
+	/// Number of opportunities currently flagged as potential cross-source duplicates.
 	measure 'Duplicate Candidate Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'Opportunities'[potential_duplicate_flag] = TRUE()
+			    'Opportunities'[Potential Duplicate] = TRUE()
 			)
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: a6729976-78e1-42a5-bb5b-a6854e2156bc
 
-	/// Sum of estimated opportunity value in the current filter context; interpret with currency_code.
-	measure 'Estimated Opportunity Value' = SUM('Opportunities'[estimated_value])
+	/// Total estimated value of opportunities with populated estimated values.
+	measure 'Estimated Opportunity Value' = SUM('Opportunities'[Estimated Value])
 		formatString: #,##0.##
 		displayFolder: Value
 		lineageTag: e5eef717-c86c-4ace-a263-a48abb944af5
 
-	/// Average estimated opportunity value in the current filter context; interpret with currency_code.
-	measure 'Average Estimated Value' = AVERAGE('Opportunities'[estimated_value])
+	/// Average estimated value across opportunities with populated values.
+	measure 'Average Estimated Value' = AVERAGE('Opportunities'[Estimated Value])
 		formatString: #,##0.##
 		displayFolder: Value
 		lineageTag: 8ebc8d58-7f3b-4360-bd8e-4504eb7e2569
 
-	/// Average number of days from publication to closing date.
-	measure 'Average Days To Close' = AVERAGE('Opportunities'[days_to_close])
+	/// Average number of days between opportunity publication and closing.
+	measure 'Average Days To Close' = AVERAGE('Opportunities'[Days to Close])
 		formatString: #,##0.00
 		displayFolder: Cycle Time
 		lineageTag: befc7ab9-c5b6-478d-bd5c-7cccb3092033
 
-	/// Number of opportunities whose normalized category is missing.
+	/// Number of opportunities where a usable procurement category is missing.
 	measure 'Opportunities Missing Category' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'Opportunities'[category_quality_status] = "MISSING"
+			    'Opportunities'[Category Quality Status] = "MISSING"
 			)
 		formatString: #,##0
 		displayFolder: Data Quality
 		lineageTag: 493dd8b8-b416-403f-87da-9d64725858ff
 
-	/// Number of distinct buyers represented by opportunities in the current filter context.
+	/// Number of distinct buyer organizations represented by opportunities.
 	measure 'Distinct Buyers' = DISTINCTCOUNT('Opportunities'[buyer_key])
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: 34725065-ad0a-4c8a-a008-895f53e78b3c
 
-	/// Number of distinct source systems represented by opportunities in the current filter context.
+	/// Number of distinct procurement source systems represented by opportunities.
 	measure 'Distinct Sources' = DISTINCTCOUNT('Opportunities'[source_system])
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: 9cea31e6-17b6-4193-9eba-345b7f449100
 
-	/// Number of opportunities evaluated by closing date through the inactive Date relationship.
+	/// Opportunity count evaluated using Closing Date instead of Published Date.
 	measure 'Closing Opportunity Count' =
 			CALCULATE(
 			    [Opportunity Count],
 			    USERELATIONSHIP(
-			        'Date'[date_value],
-			        'Opportunities'[closing_date]
+			        'Date'[Date],
+			        'Opportunities'[Closing Date]
 			    )
 			)
 		formatString: #,##0
@@ -112,7 +113,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column opportunity_id
+	/// Source-facing business identifier for the procurement opportunity.
+	column 'Opportunity ID'
 		dataType: string
 		lineageTag: ccaaf9d8-2de9-47b2-b80b-687914837000
 		sourceLineageTag: opportunity_id
@@ -121,7 +123,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column external_reference
+	/// Source-facing reference used to identify the procurement opportunity.
+	column Reference
 		dataType: string
 		lineageTag: 3af0815c-02d1-4fa3-b81d-03e0407b159a
 		sourceLineageTag: external_reference
@@ -130,16 +133,19 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column title
+	/// Title describing the procurement requirement.
+	column Opportunity
 		dataType: string
 		lineageTag: 2399c928-2ea1-474b-b98a-57d3f62974e3
 		sourceLineageTag: title
+		isDefaultLabel
 		summarizeBy: none
 		sourceColumn: title
 
 		annotation SummarizationSetBy = Automatic
 
-	column description
+	/// Narrative detail describing the procurement requirement and scope.
+	column 'Opportunity Description'
 		dataType: string
 		lineageTag: ebc2dac6-19e7-4ca9-8e88-febec91c833e
 		sourceLineageTag: description
@@ -182,7 +188,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column buyer_id
+	/// Source-facing identifier of the buyer associated with the opportunity.
+	column 'Buyer ID'
 		dataType: string
 		lineageTag: fe9c95cf-996a-4369-9980-318088208a1f
 		sourceLineageTag: buyer_id
@@ -191,7 +198,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column buyer_name
+	/// Buyer organization associated with the procurement opportunity.
+	column Buyer
 		dataType: string
 		lineageTag: ea88dbd6-8c09-40ab-a851-b43647ef6d21
 		sourceLineageTag: buyer_name
@@ -200,7 +208,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column category_raw
+	/// Original category label supplied by the source before governed classification.
+	column 'Source Category'
 		dataType: string
 		lineageTag: 6ba531c3-028c-44a6-8625-c76f9e4b926e
 		sourceLineageTag: category_raw
@@ -209,7 +218,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column category
+	/// Governed category assigned to the opportunity for analysis and filtering.
+	column 'Procurement Category'
 		dataType: string
 		lineageTag: fa4b622b-3785-4a8b-a704-5270dd8a4243
 		sourceLineageTag: category
@@ -218,7 +228,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column category_quality_status
+	/// Indicates whether the opportunity category was classified, missing, or unclassified.
+	column 'Category Quality Status'
 		dataType: string
 		lineageTag: 73e0c9e9-2933-4acf-b2ee-e40c338f03eb
 		sourceLineageTag: category_quality_status
@@ -227,7 +238,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column status_raw
+	/// Original lifecycle status supplied by the procurement source.
+	column 'Source Status'
 		dataType: string
 		lineageTag: ee1ccb5d-3eab-4d9a-adea-e5d6e91fe132
 		sourceLineageTag: status_raw
@@ -236,7 +248,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column status
+	/// Normalized lifecycle status of the procurement opportunity.
+	column Status
 		dataType: string
 		lineageTag: 041d9acd-2bb0-4104-b47b-dc62f0476332
 		sourceLineageTag: status
@@ -245,7 +258,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column country
+	/// Country in which the procurement opportunity applies.
+	column Country
 		dataType: string
 		lineageTag: c19378ab-1b01-41a8-87d0-0020889f4068
 		sourceLineageTag: country
@@ -254,7 +268,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column country_code
+	/// Source-provided country code for the procurement opportunity.
+	column 'Country Code'
 		dataType: string
 		lineageTag: e94c277b-16f4-419f-915b-3a0b20be2c73
 		sourceLineageTag: country_code
@@ -263,7 +278,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column region
+	/// Geographic or administrative region associated with the opportunity.
+	column Region
 		dataType: string
 		lineageTag: b92df63a-ff02-4e93-a11a-ecf5e0eaff96
 		sourceLineageTag: region
@@ -272,7 +288,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column published_date
+	/// Date the procurement opportunity was published.
+	column 'Published Date'
 		dataType: dateTime
 		formatString: yyyy-MM-dd
 		lineageTag: 05837caf-1314-4f35-95e5-db8af97f195e
@@ -282,7 +299,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column closing_date
+	/// Deadline for responses to the procurement opportunity.
+	column 'Closing Date'
 		dataType: dateTime
 		formatString: yyyy-MM-dd
 		lineageTag: c567051a-b974-4071-80a8-2957bc005626
@@ -292,7 +310,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column days_to_close
+	/// Number of calendar days between publication and closing dates.
+	column 'Days to Close'
 		dataType: int64
 		isHidden
 		formatString: #,##0
@@ -303,7 +322,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column currency_code
+	/// Currency code applying to the opportunity's estimated value.
+	column Currency
 		dataType: string
 		lineageTag: e0d60ad6-4776-42aa-a33b-aec16654a569
 		sourceLineageTag: currency_code
@@ -312,7 +332,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column estimated_value
+	/// Estimated monetary value of the procurement opportunity when available.
+	column 'Estimated Value'
 		dataType: double
 		isHidden
 		formatString: #,##0.##
@@ -325,7 +346,8 @@ table Opportunities
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column official_source_url
+	/// URL of the authoritative source listing for the procurement opportunity.
+	column 'Official Source'
 		dataType: string
 		lineageTag: 7a3f306c-3240-449f-84ed-466c7e83e939
 		sourceLineageTag: official_source_url
@@ -345,7 +367,8 @@ table Opportunities
 
 		annotation SummarizationSetBy = Automatic
 
-	column potential_duplicate_flag
+	/// Indicates that the record may match an opportunity from another source and requires review.
+	column 'Potential Duplicate'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: 9f73148f-2145-4e46-871f-5314e6825845

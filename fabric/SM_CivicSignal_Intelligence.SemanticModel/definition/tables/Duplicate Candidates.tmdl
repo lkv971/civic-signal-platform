@@ -1,3 +1,4 @@
+/// Cross-source opportunity records identified as potential duplicates for review. Candidate status does not mean the records are confirmed duplicates.
 table 'Duplicate Candidates'
 	lineageTag: 72e05236-f657-4ab0-b2f7-5e7eafeaa9d1
 	sourceLineageTag: [fact].[opportunity_duplicate_candidate]
@@ -24,7 +25,8 @@ table 'Duplicate Candidates'
 
 		annotation SummarizationSetBy = Automatic
 
-	column source_system
+	/// Procurement source code associated with the duplicate candidate.
+	column 'Source Code'
 		dataType: string
 		lineageTag: bc893506-3788-4ddb-985a-226b8ff63192
 		sourceLineageTag: source_system
@@ -33,7 +35,8 @@ table 'Duplicate Candidates'
 
 		annotation SummarizationSetBy = Automatic
 
-	column opportunity_id
+	/// Source-facing business identifier for the duplicate candidate.
+	column 'Opportunity ID'
 		dataType: string
 		lineageTag: f370c5d3-2111-44b7-a2d6-1b4514d903a7
 		sourceLineageTag: opportunity_id
@@ -42,16 +45,19 @@ table 'Duplicate Candidates'
 
 		annotation SummarizationSetBy = Automatic
 
-	column title
+	/// Title of the procurement opportunity identified as a possible duplicate.
+	column Opportunity
 		dataType: string
 		lineageTag: 65a30572-a29b-49a8-a8d5-c4aa9cc1f043
 		sourceLineageTag: title
+		isDefaultLabel
 		summarizeBy: none
 		sourceColumn: title
 
 		annotation SummarizationSetBy = Automatic
 
-	column buyer_name
+	/// Buyer organization associated with the duplicate candidate.
+	column Buyer
 		dataType: string
 		lineageTag: 3b8920e5-647b-4089-8ba7-8a43403a2952
 		sourceLineageTag: buyer_name
@@ -60,7 +66,8 @@ table 'Duplicate Candidates'
 
 		annotation SummarizationSetBy = Automatic
 
-	column published_date
+	/// Publication date of the potential duplicate opportunity record.
+	column 'Published Date'
 		dataType: dateTime
 		formatString: yyyy-MM-dd
 		lineageTag: 44a41632-ceee-418a-ba36-dfb65a6b46c2
@@ -70,7 +77,8 @@ table 'Duplicate Candidates'
 
 		annotation SummarizationSetBy = Automatic
 
-	column potential_duplicate_flag
+	/// Indicates that the record is a possible cross-source duplicate requiring review.
+	column 'Potential Duplicate'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: 3d27e2b6-af53-4597-b722-592c1859017d

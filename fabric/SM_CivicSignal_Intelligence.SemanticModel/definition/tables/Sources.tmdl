@@ -1,8 +1,10 @@
+/// Synthetic procurement source systems from which Civic Signal opportunities and buyer records are collected.
 table Sources
 	lineageTag: e73c4811-da2e-4adb-b92d-74d13f65ed7b
 	sourceLineageTag: [dim].[source]
 
-	column source_system
+	/// Stable business code identifying the procurement source system.
+	column 'Source Code'
 		dataType: string
 		lineageTag: ca72db00-eecf-4d27-9c77-7d94836794fc
 		sourceLineageTag: source_system
@@ -11,16 +13,19 @@ table Sources
 
 		annotation SummarizationSetBy = Automatic
 
-	column source_display_name
+	/// Friendly name of the procurement source system.
+	column Source
 		dataType: string
 		lineageTag: 229e6278-cce2-4c70-b134-6847812fb3c1
 		sourceLineageTag: source_display_name
+		isDefaultLabel
 		summarizeBy: none
 		sourceColumn: source_display_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column source_type
+	/// Classification of the procurement source, such as a portal or other source system.
+	column 'Source Type'
 		dataType: string
 		lineageTag: 71b01b2b-ba22-4b06-a066-167572eafe15
 		sourceLineageTag: source_type
@@ -29,7 +34,8 @@ table Sources
 
 		annotation SummarizationSetBy = Automatic
 
-	column enabled_flag
+	/// Indicates whether the source is enabled for governed ingestion.
+	column Enabled
 		dataType: int64
 		formatString: 0
 		lineageTag: b91e4773-337d-4c4a-88ef-dab82115bd43
@@ -39,7 +45,8 @@ table Sources
 
 		annotation SummarizationSetBy = Automatic
 
-	column supported_entity_types
+	/// Entity types supplied by the procurement source, such as buyers or opportunities.
+	column 'Supported Entity Types'
 		dataType: string
 		isHidden
 		isAvailableInMdx: false
@@ -50,7 +57,8 @@ table Sources
 
 		annotation SummarizationSetBy = Automatic
 
-	column schema_versions
+	/// Governed payload schema versions observed for the procurement source.
+	column 'Schema Versions'
 		dataType: string
 		isHidden
 		isAvailableInMdx: false
@@ -61,7 +69,8 @@ table Sources
 
 		annotation SummarizationSetBy = Automatic
 
-	column is_synthetic
+	/// Indicates that records associated with the source are synthetic test data.
+	column 'Synthetic Data'
 		dataType: boolean
 		isHidden
 		formatString: """TRUE"";""TRUE"";""FALSE"""

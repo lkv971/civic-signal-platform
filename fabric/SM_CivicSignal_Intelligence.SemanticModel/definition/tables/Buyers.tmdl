@@ -1,3 +1,4 @@
+/// Public-sector buyer organizations associated with procurement opportunities.
 table Buyers
 	lineageTag: 4fc97034-6dd4-4512-9731-67c741d0e239
 	sourceLineageTag: [dim].[buyer]
@@ -13,7 +14,8 @@ table Buyers
 
 		annotation SummarizationSetBy = Automatic
 
-	column buyer_id
+	/// Source-facing business identifier for the buyer organization.
+	column 'Buyer ID'
 		dataType: string
 		lineageTag: 7fa1e01f-9ae5-41a2-b0e0-45b54125f5a5
 		sourceLineageTag: buyer_id
@@ -22,16 +24,19 @@ table Buyers
 
 		annotation SummarizationSetBy = Automatic
 
-	column buyer_name
+	/// Name of the public-sector buyer organization.
+	column Buyer
 		dataType: string
 		lineageTag: 23914df1-a81a-4d04-8dd1-95621c45dd0a
 		sourceLineageTag: buyer_name
+		isDefaultLabel
 		summarizeBy: none
 		sourceColumn: buyer_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column buyer_type
+	/// Classification of the public-sector organization acting as buyer.
+	column 'Buyer Type'
 		dataType: string
 		lineageTag: 9d7e802f-b6a5-4223-beab-046f6670aa0a
 		sourceLineageTag: buyer_type
@@ -40,7 +45,8 @@ table Buyers
 
 		annotation SummarizationSetBy = Automatic
 
-	column country
+	/// Country in which the buyer organization is located.
+	column Country
 		dataType: string
 		lineageTag: 712339ce-9e43-4981-8a9f-11052a19e628
 		sourceLineageTag: country
@@ -49,7 +55,8 @@ table Buyers
 
 		annotation SummarizationSetBy = Automatic
 
-	column country_code
+	/// Source-provided country code for the buyer organization.
+	column 'Country Code'
 		dataType: string
 		lineageTag: 54902647-8793-44bc-95b5-51aa7b8e1fe4
 		sourceLineageTag: country_code
@@ -58,7 +65,8 @@ table Buyers
 
 		annotation SummarizationSetBy = Automatic
 
-	column region
+	/// Geographic or administrative region associated with the buyer.
+	column Region
 		dataType: string
 		lineageTag: c50e6b84-d9ef-431f-acdc-0408b35aaea4
 		sourceLineageTag: region
@@ -67,7 +75,8 @@ table Buyers
 
 		annotation SummarizationSetBy = Automatic
 
-	column website
+	/// Official website for the buyer organization when available.
+	column Website
 		dataType: string
 		lineageTag: b173214b-c46a-4290-9156-ead26894f84a
 		sourceLineageTag: website

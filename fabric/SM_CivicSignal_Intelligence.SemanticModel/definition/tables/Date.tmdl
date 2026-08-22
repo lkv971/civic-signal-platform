@@ -1,3 +1,4 @@
+/// Calendar dimension used for published-date and closing-date analysis of procurement opportunities.
 table Date
 	lineageTag: f2a3d308-7747-420b-a161-bcf89f88af45
 	sourceLineageTag: [dim].[date]
@@ -15,18 +16,21 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column date_value
+	/// Calendar date used to filter opportunities by publication date or closing deadline.
+	column Date
 		dataType: dateTime
 		isUnique
 		formatString: yyyy-MM-dd
 		lineageTag: eff7b7c5-998b-4aab-94fa-358018025c63
 		sourceLineageTag: date_value
+		isDefaultLabel
 		summarizeBy: none
 		sourceColumn: date_value
 
 		annotation SummarizationSetBy = Automatic
 
-	column year_number
+	/// Calendar year containing the date.
+	column Year
 		dataType: int64
 		formatString: 0
 		lineageTag: 938fe9da-63d9-46b3-925f-9efba2dccae7
@@ -36,7 +40,8 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column quarter_number
+	/// Numeric calendar quarter from 1 to 4, used to order quarter labels.
+	column 'Quarter Number'
 		dataType: int64
 		formatString: 0
 		lineageTag: 4a5937d3-133c-419a-a8cf-4a19ed887c39
@@ -46,7 +51,8 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column quarter_label
+	/// Calendar quarter label used to group opportunity dates.
+	column Quarter
 		dataType: string
 		lineageTag: 582326d9-9b82-45ac-8a5a-6bb3c326a77e
 		sourceLineageTag: quarter_label
@@ -55,7 +61,8 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column month_number
+	/// Numeric calendar month from 1 to 12, used to order Month.
+	column 'Month Number'
 		dataType: int64
 		isHidden
 		formatString: 0
@@ -66,17 +73,19 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column month_name
+	/// Calendar month name used to group dates; sorted chronologically by Month Number.
+	column Month
 		dataType: string
 		lineageTag: 478f210a-43ec-445b-9715-34ba0173813a
 		sourceLineageTag: month_name
 		summarizeBy: none
 		sourceColumn: month_name
-		sortByColumn: month_number
+		sortByColumn: 'Month Number'
 
 		annotation SummarizationSetBy = Automatic
 
-	column year_month
+	/// Year-and-month label used for chronological monthly analysis.
+	column 'Year Month'
 		dataType: string
 		lineageTag: eb985e3d-9bc1-4198-9b7e-c109ce835e6a
 		sourceLineageTag: year_month
@@ -85,7 +94,8 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column month_start_date
+	/// First calendar date of the month containing the selected date.
+	column 'Month Start'
 		dataType: dateTime
 		formatString: yyyy-MM-dd
 		lineageTag: 15fa0b3e-4138-492f-a2a3-dafb61ab5204
@@ -95,7 +105,8 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column month_end_date
+	/// Last calendar date of the month containing the selected date.
+	column 'Month End'
 		dataType: dateTime
 		formatString: yyyy-MM-dd
 		lineageTag: 834944e9-d795-454c-83c8-4df99053bb83
@@ -105,7 +116,8 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
-	column iso_week_number
+	/// ISO 8601 week number containing the date.
+	column 'ISO Week'
 		dataType: int64
 		formatString: 0
 		lineageTag: ee568d65-25d2-4a08-a4df-a6786404552d

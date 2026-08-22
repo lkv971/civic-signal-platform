@@ -1,3 +1,4 @@
+/// Governed procurement category taxonomy used to classify and analyze opportunities.
 table 'Procurement Category'
 	lineageTag: 02e3d826-4169-4034-bc1c-9cf856bbb971
 	sourceLineageTag: [dim].[procurement_category]
@@ -14,10 +15,12 @@ table 'Procurement Category'
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Governed procurement category used for filtering and analysis.
 	column category
 		dataType: string
 		lineageTag: 07c8e658-b74c-438e-839c-6cc3caa0b6bb
 		sourceLineageTag: category
+		isDefaultLabel
 		summarizeBy: none
 		sourceColumn: category
 		sortByColumn: sort_order
@@ -35,6 +38,7 @@ table 'Procurement Category'
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Indicates whether the category is available for current classification and reporting.
 	column is_active
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
