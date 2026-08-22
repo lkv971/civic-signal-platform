@@ -1,0 +1,66 @@
+table 'Procurement Category'
+	lineageTag: 02e3d826-4169-4034-bc1c-9cf856bbb971
+	sourceLineageTag: [dim].[procurement_category]
+
+	column category_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: f9ee578c-fe67-45c8-b27e-aa784c5b5ce7
+		sourceLineageTag: category_id
+		summarizeBy: none
+		sourceColumn: category_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 07c8e658-b74c-438e-839c-6cc3caa0b6bb
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+		sortByColumn: sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b9dc52cc-6201-4ba5-8af5-3e7617c12645
+		sourceLineageTag: sort_order
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9760fa42-8874-4c91-831c-bc5c466e4638
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column gold_refreshed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: f69dfc89-5a55-4f08-8b54-9942f3faf269
+		sourceLineageTag: gold_refreshed_at_utc
+		summarizeBy: none
+		sourceColumn: gold_refreshed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition procurement_category = entity
+		mode: directLake
+		source
+			entityName: procurement_category
+			schemaName: dim
+			expressionSource: 'DirectLake - WH_CivicSignal_Gold'
+

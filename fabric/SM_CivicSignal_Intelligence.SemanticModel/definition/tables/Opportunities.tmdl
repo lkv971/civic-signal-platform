@@ -1,0 +1,434 @@
+table Opportunities
+	lineageTag: 72f9d3d0-838f-46c1-a319-705873007fd8
+	sourceLineageTag: [fact].[opportunity]
+
+	/// Number of opportunity records in the current filter context.
+	measure 'Opportunity Count' = COUNTROWS('Opportunities')
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: baef17f4-0b53-4112-a6ce-e6baaadc4d13
+
+	/// Number of opportunities whose current status is Open.
+	measure 'Open Opportunities' =
+			CALCULATE(
+			    [Opportunity Count],
+			    'Opportunities'[status] = "Open"
+			)
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: a23a5bea-d6df-4748-a02f-437706bda0ba
+
+	/// Number of opportunities whose current status is Awarded.
+	measure 'Awarded Opportunities' =
+			CALCULATE(
+			    [Opportunity Count],
+			    'Opportunities'[status] = "Awarded"
+			)
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: ed4798c9-af90-4e80-84ca-ad4b5cfb9949
+
+	/// Number of opportunities whose current status is Cancelled.
+	measure 'Cancelled Opportunities' =
+			CALCULATE(
+			    [Opportunity Count],
+			    'Opportunities'[status] = "Cancelled"
+			)
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: f003b538-b1f3-4c97-92d9-1a1fe8577eb4
+
+	/// Number of opportunities flagged as potential duplicate candidates.
+	measure 'Duplicate Candidate Opportunities' =
+			CALCULATE(
+			    [Opportunity Count],
+			    'Opportunities'[potential_duplicate_flag] = TRUE()
+			)
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: a6729976-78e1-42a5-bb5b-a6854e2156bc
+
+	/// Sum of estimated opportunity value in the current filter context; interpret with currency_code.
+	measure 'Estimated Opportunity Value' = SUM('Opportunities'[estimated_value])
+		formatString: #,##0.##
+		displayFolder: Value
+		lineageTag: e5eef717-c86c-4ace-a263-a48abb944af5
+
+	/// Average estimated opportunity value in the current filter context; interpret with currency_code.
+	measure 'Average Estimated Value' = AVERAGE('Opportunities'[estimated_value])
+		formatString: #,##0.##
+		displayFolder: Value
+		lineageTag: 8ebc8d58-7f3b-4360-bd8e-4504eb7e2569
+
+	/// Average number of days from publication to closing date.
+	measure 'Average Days To Close' = AVERAGE('Opportunities'[days_to_close])
+		formatString: #,##0.00
+		displayFolder: Cycle Time
+		lineageTag: befc7ab9-c5b6-478d-bd5c-7cccb3092033
+
+	/// Number of opportunities whose normalized category is missing.
+	measure 'Opportunities Missing Category' =
+			CALCULATE(
+			    [Opportunity Count],
+			    'Opportunities'[category_quality_status] = "MISSING"
+			)
+		formatString: #,##0
+		displayFolder: Data Quality
+		lineageTag: 493dd8b8-b416-403f-87da-9d64725858ff
+
+	/// Number of distinct buyers represented by opportunities in the current filter context.
+	measure 'Distinct Buyers' = DISTINCTCOUNT('Opportunities'[buyer_key])
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: 34725065-ad0a-4c8a-a008-895f53e78b3c
+
+	/// Number of distinct source systems represented by opportunities in the current filter context.
+	measure 'Distinct Sources' = DISTINCTCOUNT('Opportunities'[source_system])
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: 9cea31e6-17b6-4193-9eba-345b7f449100
+
+	/// Number of opportunities evaluated by closing date through the inactive Date relationship.
+	measure 'Closing Opportunity Count' =
+			CALCULATE(
+			    [Opportunity Count],
+			    USERELATIONSHIP(
+			        'Date'[date_value],
+			        'Opportunities'[closing_date]
+			    )
+			)
+		formatString: #,##0
+		displayFolder: Counts
+		lineageTag: 229f7833-0244-49d4-83b7-39a955217706
+
+	column opportunity_key
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: a206da43-23fb-45bb-ad50-a13ed0ad5def
+		sourceLineageTag: opportunity_key
+		summarizeBy: none
+		sourceColumn: opportunity_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_id
+		dataType: string
+		lineageTag: ccaaf9d8-2de9-47b2-b80b-687914837000
+		sourceLineageTag: opportunity_id
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column external_reference
+		dataType: string
+		lineageTag: 3af0815c-02d1-4fa3-b81d-03e0407b159a
+		sourceLineageTag: external_reference
+		summarizeBy: none
+		sourceColumn: external_reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 2399c928-2ea1-474b-b98a-57d3f62974e3
+		sourceLineageTag: title
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: ebc2dac6-19e7-4ca9-8e88-febec91c833e
+		sourceLineageTag: description
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyer_key
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: a9512193-d643-499b-b9a7-c0fd3099615f
+		sourceLineageTag: buyer_key
+		summarizeBy: none
+		sourceColumn: buyer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_system
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 59c2a9fa-a21d-492e-bd0d-98f837e1f64d
+		sourceLineageTag: source_system
+		summarizeBy: none
+		sourceColumn: source_system
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: 7222688b-b329-44ca-8595-183df515b31c
+		sourceLineageTag: category_id
+		summarizeBy: none
+		sourceColumn: category_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyer_id
+		dataType: string
+		lineageTag: fe9c95cf-996a-4369-9980-318088208a1f
+		sourceLineageTag: buyer_id
+		summarizeBy: none
+		sourceColumn: buyer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyer_name
+		dataType: string
+		lineageTag: ea88dbd6-8c09-40ab-a851-b43647ef6d21
+		sourceLineageTag: buyer_name
+		summarizeBy: none
+		sourceColumn: buyer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_raw
+		dataType: string
+		lineageTag: 6ba531c3-028c-44a6-8625-c76f9e4b926e
+		sourceLineageTag: category_raw
+		summarizeBy: none
+		sourceColumn: category_raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: fa4b622b-3785-4a8b-a704-5270dd8a4243
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_quality_status
+		dataType: string
+		lineageTag: 73e0c9e9-2933-4acf-b2ee-e40c338f03eb
+		sourceLineageTag: category_quality_status
+		summarizeBy: none
+		sourceColumn: category_quality_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_raw
+		dataType: string
+		lineageTag: ee1ccb5d-3eab-4d9a-adea-e5d6e91fe132
+		sourceLineageTag: status_raw
+		summarizeBy: none
+		sourceColumn: status_raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 041d9acd-2bb0-4104-b47b-dc62f0476332
+		sourceLineageTag: status
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: c19378ab-1b01-41a8-87d0-0020889f4068
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_code
+		dataType: string
+		lineageTag: e94c277b-16f4-419f-915b-3a0b20be2c73
+		sourceLineageTag: country_code
+		summarizeBy: none
+		sourceColumn: country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: b92df63a-ff02-4e93-a11a-ecf5e0eaff96
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column published_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 05837caf-1314-4f35-95e5-db8af97f195e
+		sourceLineageTag: published_date
+		summarizeBy: none
+		sourceColumn: published_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column closing_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: c567051a-b974-4071-80a8-2957bc005626
+		sourceLineageTag: closing_date
+		summarizeBy: none
+		sourceColumn: closing_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_to_close
+		dataType: int64
+		isHidden
+		formatString: #,##0
+		lineageTag: fa19e7b3-6cad-4490-8c9a-48811ce1e7b1
+		sourceLineageTag: days_to_close
+		summarizeBy: none
+		sourceColumn: days_to_close
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency_code
+		dataType: string
+		lineageTag: e0d60ad6-4776-42aa-a33b-aec16654a569
+		sourceLineageTag: currency_code
+		summarizeBy: none
+		sourceColumn: currency_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column estimated_value
+		dataType: double
+		isHidden
+		formatString: #,##0.##
+		lineageTag: eff2b175-3cfc-4425-8c77-543113a3b3bd
+		sourceLineageTag: estimated_value
+		summarizeBy: sum
+		sourceColumn: estimated_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column official_source_url
+		dataType: string
+		lineageTag: 7a3f306c-3240-449f-84ed-466c7e83e939
+		sourceLineageTag: official_source_url
+		summarizeBy: none
+		sourceColumn: official_source_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column duplicate_group_hint
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 77e0a50e-70fa-4f91-b1fa-b16557521696
+		sourceLineageTag: duplicate_group_hint
+		summarizeBy: none
+		sourceColumn: duplicate_group_hint
+
+		annotation SummarizationSetBy = Automatic
+
+	column potential_duplicate_flag
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9f73148f-2145-4e46-871f-5314e6825845
+		sourceLineageTag: potential_duplicate_flag
+		summarizeBy: none
+		sourceColumn: potential_duplicate_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_record_id
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 0c60876f-6303-438c-8fc8-bf90a13ad982
+		sourceLineageTag: source_record_id
+		summarizeBy: none
+		sourceColumn: source_record_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_seen_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: a074e26c-aca8-49b9-86ec-27210f7c05a0
+		sourceLineageTag: first_seen_at_utc
+		summarizeBy: none
+		sourceColumn: first_seen_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_seen_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: 65537ac5-2ac2-4fba-ab21-4adb0519b0a8
+		sourceLineageTag: last_seen_at_utc
+		summarizeBy: none
+		sourceColumn: last_seen_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_run_id
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: ac033418-a86c-44f3-a061-dc2a47d647c4
+		sourceLineageTag: silver_run_id
+		summarizeBy: none
+		sourceColumn: silver_run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_processed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: f7819401-cb5c-4ba2-b907-74202e1cdd37
+		sourceLineageTag: silver_processed_at_utc
+		summarizeBy: none
+		sourceColumn: silver_processed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column gold_refreshed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: 1de87008-1569-434f-bdbe-2998657b2174
+		sourceLineageTag: gold_refreshed_at_utc
+		summarizeBy: none
+		sourceColumn: gold_refreshed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition opportunity = entity
+		mode: directLake
+		source
+			entityName: opportunity
+			schemaName: fact
+			expressionSource: 'DirectLake - WH_CivicSignal_Gold'
+

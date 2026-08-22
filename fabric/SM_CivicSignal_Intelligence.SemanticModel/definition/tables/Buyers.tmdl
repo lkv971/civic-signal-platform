@@ -1,0 +1,155 @@
+table Buyers
+	lineageTag: 4fc97034-6dd4-4512-9731-67c741d0e239
+	sourceLineageTag: [dim].[buyer]
+
+	column buyer_key
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 0f55d68c-ef9c-42ac-852b-1d3bc9a1777f
+		sourceLineageTag: buyer_key
+		summarizeBy: none
+		sourceColumn: buyer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyer_id
+		dataType: string
+		lineageTag: 7fa1e01f-9ae5-41a2-b0e0-45b54125f5a5
+		sourceLineageTag: buyer_id
+		summarizeBy: none
+		sourceColumn: buyer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyer_name
+		dataType: string
+		lineageTag: 23914df1-a81a-4d04-8dd1-95621c45dd0a
+		sourceLineageTag: buyer_name
+		summarizeBy: none
+		sourceColumn: buyer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyer_type
+		dataType: string
+		lineageTag: 9d7e802f-b6a5-4223-beab-046f6670aa0a
+		sourceLineageTag: buyer_type
+		summarizeBy: none
+		sourceColumn: buyer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 712339ce-9e43-4981-8a9f-11052a19e628
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_code
+		dataType: string
+		lineageTag: 54902647-8793-44bc-95b5-51aa7b8e1fe4
+		sourceLineageTag: country_code
+		summarizeBy: none
+		sourceColumn: country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: c50e6b84-d9ef-431f-acdc-0408b35aaea4
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column website
+		dataType: string
+		lineageTag: b173214b-c46a-4290-9156-ead26894f84a
+		sourceLineageTag: website
+		summarizeBy: none
+		sourceColumn: website
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_system
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 265546fd-0040-4e17-83d6-be8858700c72
+		sourceLineageTag: source_system
+		summarizeBy: none
+		sourceColumn: source_system
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_seen_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: d7ab5c5d-6ccc-462f-94ec-c7aabc5b91f9
+		sourceLineageTag: first_seen_at_utc
+		summarizeBy: none
+		sourceColumn: first_seen_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_seen_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: fd5965d3-0cac-4246-b681-af7fd2b6c980
+		sourceLineageTag: last_seen_at_utc
+		summarizeBy: none
+		sourceColumn: last_seen_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_run_id
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 961284cc-69eb-4a1f-9236-6723bb683b1b
+		sourceLineageTag: silver_run_id
+		summarizeBy: none
+		sourceColumn: silver_run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_processed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: c895305b-768b-4472-9b51-47c453cc3fe2
+		sourceLineageTag: silver_processed_at_utc
+		summarizeBy: none
+		sourceColumn: silver_processed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column gold_refreshed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: 4be810e9-749a-4610-801d-1fd2f7821d10
+		sourceLineageTag: gold_refreshed_at_utc
+		summarizeBy: none
+		sourceColumn: gold_refreshed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition buyer = entity
+		mode: directLake
+		source
+			entityName: buyer
+			schemaName: dim
+			expressionSource: 'DirectLake - WH_CivicSignal_Gold'
+

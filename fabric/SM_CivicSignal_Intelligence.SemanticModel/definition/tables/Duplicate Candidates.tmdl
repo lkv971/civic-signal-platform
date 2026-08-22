@@ -1,0 +1,124 @@
+table 'Duplicate Candidates'
+	lineageTag: 72e05236-f657-4ab0-b2f7-5e7eafeaa9d1
+	sourceLineageTag: [fact].[opportunity_duplicate_candidate]
+
+	column duplicate_group_hint
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 0d4d50e7-adfa-4aee-953d-e1e2a31ebc71
+		sourceLineageTag: duplicate_group_hint
+		summarizeBy: none
+		sourceColumn: duplicate_group_hint
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_key
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 0a9917f8-2bd7-4b5e-b4fd-3cff0115f710
+		sourceLineageTag: opportunity_key
+		summarizeBy: none
+		sourceColumn: opportunity_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_system
+		dataType: string
+		lineageTag: bc893506-3788-4ddb-985a-226b8ff63192
+		sourceLineageTag: source_system
+		summarizeBy: none
+		sourceColumn: source_system
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_id
+		dataType: string
+		lineageTag: f370c5d3-2111-44b7-a2d6-1b4514d903a7
+		sourceLineageTag: opportunity_id
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 65a30572-a29b-49a8-a8d5-c4aa9cc1f043
+		sourceLineageTag: title
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyer_name
+		dataType: string
+		lineageTag: 3b8920e5-647b-4089-8ba7-8a43403a2952
+		sourceLineageTag: buyer_name
+		summarizeBy: none
+		sourceColumn: buyer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column published_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 44a41632-ceee-418a-ba36-dfb65a6b46c2
+		sourceLineageTag: published_date
+		summarizeBy: none
+		sourceColumn: published_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column potential_duplicate_flag
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3d27e2b6-af53-4597-b722-592c1859017d
+		sourceLineageTag: potential_duplicate_flag
+		summarizeBy: none
+		sourceColumn: potential_duplicate_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_run_id
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: e66ec9b7-c12c-4a0e-ab55-271c66a28270
+		sourceLineageTag: silver_run_id
+		summarizeBy: none
+		sourceColumn: silver_run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_processed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: 813d1911-0310-4e3d-ad63-289e2990d0bd
+		sourceLineageTag: silver_processed_at_utc
+		summarizeBy: none
+		sourceColumn: silver_processed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column gold_refreshed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: be981a03-ed43-4cce-8443-a6703d7914dd
+		sourceLineageTag: gold_refreshed_at_utc
+		summarizeBy: none
+		sourceColumn: gold_refreshed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition opportunity_duplicate_candidate = entity
+		mode: directLake
+		source
+			entityName: opportunity_duplicate_candidate
+			schemaName: fact
+			expressionSource: 'DirectLake - WH_CivicSignal_Gold'
+

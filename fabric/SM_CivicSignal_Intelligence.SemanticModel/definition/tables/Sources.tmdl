@@ -1,0 +1,117 @@
+table Sources
+	lineageTag: e73c4811-da2e-4adb-b92d-74d13f65ed7b
+	sourceLineageTag: [dim].[source]
+
+	column source_system
+		dataType: string
+		lineageTag: ca72db00-eecf-4d27-9c77-7d94836794fc
+		sourceLineageTag: source_system
+		summarizeBy: none
+		sourceColumn: source_system
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_display_name
+		dataType: string
+		lineageTag: 229e6278-cce2-4c70-b134-6847812fb3c1
+		sourceLineageTag: source_display_name
+		summarizeBy: none
+		sourceColumn: source_display_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_type
+		dataType: string
+		lineageTag: 71b01b2b-ba22-4b06-a066-167572eafe15
+		sourceLineageTag: source_type
+		summarizeBy: none
+		sourceColumn: source_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column enabled_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: b91e4773-337d-4c4a-88ef-dab82115bd43
+		sourceLineageTag: enabled_flag
+		summarizeBy: none
+		sourceColumn: enabled_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column supported_entity_types
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 75720c55-8e55-4da0-8f71-1baf1f38dee3
+		sourceLineageTag: supported_entity_types
+		summarizeBy: none
+		sourceColumn: supported_entity_types
+
+		annotation SummarizationSetBy = Automatic
+
+	column schema_versions
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 46d68afb-49d7-4479-b3c6-b16dc740043c
+		sourceLineageTag: schema_versions
+		summarizeBy: none
+		sourceColumn: schema_versions
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_synthetic
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		isAvailableInMdx: false
+		lineageTag: 6bbd557f-7c70-4643-a604-d953c69a1278
+		sourceLineageTag: is_synthetic
+		summarizeBy: none
+		sourceColumn: is_synthetic
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_run_id
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: b5096de8-c4c4-41d7-9fba-f113e3b046c3
+		sourceLineageTag: silver_run_id
+		summarizeBy: none
+		sourceColumn: silver_run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column silver_processed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: e4441ae5-e4de-41df-8ade-f78c5aa71b24
+		sourceLineageTag: silver_processed_at_utc
+		summarizeBy: none
+		sourceColumn: silver_processed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column gold_refreshed_at_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		isAvailableInMdx: false
+		lineageTag: ec1c4370-0c30-445f-8f36-126357d99dfb
+		sourceLineageTag: gold_refreshed_at_utc
+		summarizeBy: none
+		sourceColumn: gold_refreshed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition source = entity
+		mode: directLake
+		source
+			entityName: source
+			schemaName: dim
+			expressionSource: 'DirectLake - WH_CivicSignal_Gold'
+

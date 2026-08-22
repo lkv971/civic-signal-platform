@@ -1,0 +1,124 @@
+table Date
+	lineageTag: f2a3d308-7747-420b-a161-bcf89f88af45
+	sourceLineageTag: [dim].[date]
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: ccc92815-ceb6-4388-b685-b69cc6402c4a
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_value
+		dataType: dateTime
+		isUnique
+		formatString: yyyy-MM-dd
+		lineageTag: eff7b7c5-998b-4aab-94fa-358018025c63
+		sourceLineageTag: date_value
+		summarizeBy: none
+		sourceColumn: date_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 938fe9da-63d9-46b3-925f-9efba2dccae7
+		sourceLineageTag: year_number
+		summarizeBy: none
+		sourceColumn: year_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a5937d3-133c-419a-a8cf-4a19ed887c39
+		sourceLineageTag: quarter_number
+		summarizeBy: none
+		sourceColumn: quarter_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_label
+		dataType: string
+		lineageTag: 582326d9-9b82-45ac-8a5a-6bb3c326a77e
+		sourceLineageTag: quarter_label
+		summarizeBy: none
+		sourceColumn: quarter_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e03c946f-f3bb-4cd4-98ca-6194d5c405ed
+		sourceLineageTag: month_number
+		summarizeBy: none
+		sourceColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 478f210a-43ec-445b-9715-34ba0173813a
+		sourceLineageTag: month_name
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: eb985e3d-9bc1-4198-9b7e-c109ce835e6a
+		sourceLineageTag: year_month
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_start_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 15fa0b3e-4138-492f-a2a3-dafb61ab5204
+		sourceLineageTag: month_start_date
+		summarizeBy: none
+		sourceColumn: month_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_end_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 834944e9-d795-454c-83c8-4df99053bb83
+		sourceLineageTag: month_end_date
+		summarizeBy: none
+		sourceColumn: month_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column iso_week_number
+		dataType: int64
+		formatString: 0
+		lineageTag: ee568d65-25d2-4a08-a4df-a6786404552d
+		sourceLineageTag: iso_week_number
+		summarizeBy: none
+		sourceColumn: iso_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition date = entity
+		mode: directLake
+		source
+			entityName: date
+			schemaName: dim
+			expressionSource: 'DirectLake - WH_CivicSignal_Gold'
+
