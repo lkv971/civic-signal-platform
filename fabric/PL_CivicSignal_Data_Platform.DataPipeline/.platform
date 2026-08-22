@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "PL_CivicSignal_Data_Platform",
+    "description": "Sequentially orchestrates Civic Signal Bronze ingestion, Silver transformation, and Gold core refresh."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f6dabf85-3ed3-85dd-407d-6d93adf01944"
+  }
+}

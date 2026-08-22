@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "PL_Silver_Transform_Core",
+    "description": "Runs the governed Civic Signal Silver transformation notebook with pipeline run lineage and data-quality enforcement."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d39a7165-8797-a514-45a0-b4bb98e1418f"
+  }
+}

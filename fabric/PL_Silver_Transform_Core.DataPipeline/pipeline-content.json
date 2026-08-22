@@ -1,0 +1,36 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "12a18f4e-a25f-af1e-427b-0b62499af414",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "p_silver_run_id": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "p_fail_on_dq_error": {
+              "value": true,
+              "type": "bool"
+            }
+          },
+          "sessionTag": "civic_signal_silver"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 4,
+          "retryIntervalInSeconds": 180,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run_Silver_Transform_Core",
+        "dependsOn": []
+      }
+    ]
+  }
+}
