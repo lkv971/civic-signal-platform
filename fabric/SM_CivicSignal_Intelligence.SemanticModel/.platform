@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "SemanticModel",
-    "displayName": "SM_CivicSignal_Intelligence"
+    "displayName": "SM_CivicSignal_Intelligence",
+    "description": "Governed semantic model for procurement opportunity, buyer, source, category, value, deadline, and data-quality analytics."
   },
   "config": {
     "version": "2.0",

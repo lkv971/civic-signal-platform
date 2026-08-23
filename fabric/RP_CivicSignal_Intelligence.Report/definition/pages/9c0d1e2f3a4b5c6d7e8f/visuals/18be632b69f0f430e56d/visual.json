@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "18be632b69f0f430e56d",
   "position": {
     "x": 656,
@@ -23,12 +23,11 @@
                       "Entity": "Sources"
                     }
                   },
-                  "Property": "source_display_name"
+                  "Property": "Source"
                 }
               },
-              "queryRef": "Sources.source_display_name",
-              "nativeQueryRef": "Source",
-              "displayName": "Source",
+              "queryRef": "Sources.Source",
+              "nativeQueryRef": "Source1",
               "active": true
             }
           ]
@@ -37,23 +36,17 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Duplicate Candidates"
-                        }
-                      },
-                      "Property": "opportunity_id"
+                    "SourceRef": {
+                      "Entity": "Opportunities"
                     }
                   },
-                  "Function": 5
+                  "Property": "Duplicate Candidate Opportunities"
                 }
               },
-              "queryRef": "CountNonNull(Duplicate Candidates.opportunity_id)",
-              "nativeQueryRef": "Duplicate candidates",
-              "displayName": "Duplicate candidates"
+              "queryRef": "Opportunities.Duplicate Candidate Opportunities",
+              "nativeQueryRef": "Duplicate Candidate Opportunities"
             }
           ]
         }
@@ -62,18 +55,13 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Measure": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Duplicate Candidates"
-                      }
-                    },
-                    "Property": "opportunity_id"
+                  "SourceRef": {
+                    "Entity": "Opportunities"
                   }
                 },
-                "Function": 5
+                "Property": "Duplicate Candidate Opportunities"
               }
             },
             "direction": "Descending"

@@ -3,7 +3,7 @@
   "metadata": {
     "type": "DataPipeline",
     "displayName": "PL_Bronze_Load_Synthetic",
-    "description": "Orchestrates metadata-driven ingestion of synthetic civic procurement sources into the Civic Signal Bronze Lakehouse."
+    "description": "Data Factory pipeline that executes synthetic Bronze ingestion with retry and Spark-session resilience."
   },
   "config": {
     "version": "2.0",

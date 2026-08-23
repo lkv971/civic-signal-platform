@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "a389edd9ccb859c2c22d",
   "position": {
     "x": 32,
@@ -20,15 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Date"
+                      "Entity": "Opportunities"
                     }
                   },
-                  "Property": "year_month"
+                  "Property": "Published Date"
                 }
               },
-              "queryRef": "Date.year_month",
-              "nativeQueryRef": "Published month",
-              "displayName": "Published month",
+              "queryRef": "Opportunities.Published Date",
+              "nativeQueryRef": "Published Date",
               "active": true
             }
           ]
@@ -59,10 +58,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Date"
+                    "Entity": "Opportunities"
                   }
                 },
-                "Property": "year_month"
+                "Property": "Published Date"
               }
             },
             "direction": "Ascending"

@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Report",
-    "displayName": "RP_CivicSignal_Intelligence"
+    "displayName": "RP_CivicSignal_Intelligence",
+    "description": "Three-page portfolio report for executive procurement analytics, opportunity exploration, and duplicate/data-quality "
   },
   "config": {
     "version": "2.0",

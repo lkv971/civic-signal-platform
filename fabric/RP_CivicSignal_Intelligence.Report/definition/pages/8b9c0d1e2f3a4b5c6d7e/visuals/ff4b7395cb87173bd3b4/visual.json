@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "ff4b7395cb87173bd3b4",
   "position": {
     "x": 336,
@@ -8,117 +8,6 @@
     "height": 280,
     "width": 496,
     "tabOrder": 10
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "Filter1b2c3d4e5f60718293a4b5c6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Buyers"
-              }
-            },
-            "Property": "buyer_name"
-          }
-        },
-        "type": "TopN",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "subquery",
-              "Expression": {
-                "Subquery": {
-                  "Query": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "b",
-                        "Entity": "Buyers",
-                        "Type": 0
-                      },
-                      {
-                        "Name": "o",
-                        "Entity": "Opportunities",
-                        "Type": 0
-                      }
-                    ],
-                    "Select": [
-                      {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "b"
-                            }
-                          },
-                          "Property": "buyer_name"
-                        },
-                        "Name": "field"
-                      }
-                    ],
-                    "OrderBy": [
-                      {
-                        "Direction": 2,
-                        "Expression": {
-                          "Aggregation": {
-                            "Expression": {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "o"
-                                  }
-                                },
-                                "Property": "opportunity_id"
-                              }
-                            },
-                            "Function": 5
-                          }
-                        }
-                      }
-                    ],
-                    "Top": 10
-                  }
-                }
-              },
-              "Type": 2
-            },
-            {
-              "Name": "b",
-              "Entity": "Buyers",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "b"
-                          }
-                        },
-                        "Property": "buyer_name"
-                      }
-                    }
-                  ],
-                  "Table": {
-                    "SourceRef": {
-                      "Source": "subquery"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      }
-    ]
   },
   "visual": {
     "visualType": "barChart",
@@ -134,12 +23,11 @@
                       "Entity": "Buyers"
                     }
                   },
-                  "Property": "buyer_name"
+                  "Property": "Buyer"
                 }
               },
-              "queryRef": "Buyers.buyer_name",
-              "nativeQueryRef": "Buyer",
-              "displayName": "Buyer",
+              "queryRef": "Buyers.Buyer",
+              "nativeQueryRef": "Buyer1",
               "active": true
             }
           ]

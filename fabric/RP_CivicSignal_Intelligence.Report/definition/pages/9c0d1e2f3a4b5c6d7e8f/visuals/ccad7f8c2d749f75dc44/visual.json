@@ -32,7 +32,7 @@
               {
                 "textRuns": [
                   {
-                "value": "Duplicate candidates identify records that may represent the same procurement opportunity across multiple synthetic sources. They are retained for review rather than automatically removed. Missing category flags identify opportunities whose normalized procurement category is unavailable.",
+                    "value": "Duplicate candidates identify records that may represent the same procurement opportunity across multiple synthetic sources. They are retained for review rather than automatically removed. Missing category flags identify opportunities whose normalized procurement category is unavailable.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13px",

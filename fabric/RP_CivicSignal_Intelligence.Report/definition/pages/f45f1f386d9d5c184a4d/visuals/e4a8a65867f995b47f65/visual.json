@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "e4a8a65867f995b47f65",
   "position": {
     "x": 1608,
@@ -23,11 +23,12 @@
                       "Entity": "Sources"
                     }
                   },
-                  "Property": "source_display_name"
+                  "Property": "Source"
                 }
               },
-              "queryRef": "Sources.source_display_name",
-              "nativeQueryRef": "source_display_name"
+              "queryRef": "Sources.Source",
+              "nativeQueryRef": "Source",
+              "active": true
             }
           ]
         }

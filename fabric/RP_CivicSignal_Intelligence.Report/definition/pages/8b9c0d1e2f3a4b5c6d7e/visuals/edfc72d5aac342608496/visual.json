@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "edfc72d5aac342608496",
   "position": {
     "x": 32,
@@ -23,11 +23,12 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "region"
+                  "Property": "Region"
                 }
               },
-              "queryRef": "Opportunities.region",
-              "nativeQueryRef": "region"
+              "queryRef": "Opportunities.Region",
+              "nativeQueryRef": "Region",
+              "active": true
             }
           ]
         }

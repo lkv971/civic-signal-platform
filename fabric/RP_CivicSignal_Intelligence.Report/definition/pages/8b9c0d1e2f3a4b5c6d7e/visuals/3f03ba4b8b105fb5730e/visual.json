@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "3f03ba4b8b105fb5730e",
   "position": {
     "x": 32,
@@ -23,11 +23,12 @@
                       "Entity": "Date"
                     }
                   },
-                  "Property": "year_month"
+                  "Property": "Year Month"
                 }
               },
-              "queryRef": "Date.year_month",
-              "nativeQueryRef": "year_month"
+              "queryRef": "Date.Year Month",
+              "nativeQueryRef": "Year Month",
+              "active": true
             }
           ]
         }

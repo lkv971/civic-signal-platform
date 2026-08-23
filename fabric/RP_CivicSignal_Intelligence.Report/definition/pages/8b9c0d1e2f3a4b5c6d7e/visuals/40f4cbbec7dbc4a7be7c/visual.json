@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "40f4cbbec7dbc4a7be7c",
   "position": {
     "x": 336,
@@ -23,12 +23,11 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "external_reference"
+                  "Property": "Reference"
                 }
               },
-              "queryRef": "Opportunities.external_reference",
-              "nativeQueryRef": "Reference",
-              "displayName": "Reference"
+              "queryRef": "Opportunities.Reference",
+              "nativeQueryRef": "Reference1"
             },
             {
               "field": {
@@ -38,12 +37,11 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "title"
+                  "Property": "Opportunity"
                 }
               },
-              "queryRef": "Opportunities.title",
-              "nativeQueryRef": "Opportunity",
-              "displayName": "Opportunity"
+              "queryRef": "Opportunities.Opportunity",
+              "nativeQueryRef": "Opportunity1"
             },
             {
               "field": {
@@ -53,12 +51,11 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "buyer_name"
+                  "Property": "Buyer"
                 }
               },
-              "queryRef": "Opportunities.buyer_name",
-              "nativeQueryRef": "Buyer",
-              "displayName": "Buyer"
+              "queryRef": "Opportunities.Buyer",
+              "nativeQueryRef": "Buyer1"
             },
             {
               "field": {
@@ -68,12 +65,11 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "category"
+                  "Property": "Source Category"
                 }
               },
-              "queryRef": "Opportunities.category",
-              "nativeQueryRef": "Category",
-              "displayName": "Category"
+              "queryRef": "Opportunities.Source Category",
+              "nativeQueryRef": "Source Category"
             },
             {
               "field": {
@@ -83,12 +79,11 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "status"
+                  "Property": "Status"
                 }
               },
-              "queryRef": "Opportunities.status",
-              "nativeQueryRef": "Status",
-              "displayName": "Status"
+              "queryRef": "Opportunities.Status",
+              "nativeQueryRef": "Status1"
             },
             {
               "field": {
@@ -98,12 +93,11 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "published_date"
+                  "Property": "Published Date"
                 }
               },
-              "queryRef": "Opportunities.published_date",
-              "nativeQueryRef": "Published",
-              "displayName": "Published"
+              "queryRef": "Opportunities.Published Date",
+              "nativeQueryRef": "Published Date"
             },
             {
               "field": {
@@ -113,27 +107,25 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "closing_date"
+                  "Property": "Closing Date"
                 }
               },
-              "queryRef": "Opportunities.closing_date",
-              "nativeQueryRef": "Closing",
-              "displayName": "Closing"
+              "queryRef": "Opportunities.Closing Date",
+              "nativeQueryRef": "Closing Date"
             },
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "estimated_value"
+                  "Property": "Estimated Opportunity Value"
                 }
               },
-              "queryRef": "Opportunities.estimated_value",
-              "nativeQueryRef": "Estimated value",
-              "displayName": "Estimated value"
+              "queryRef": "Opportunities.Estimated Opportunity Value",
+              "nativeQueryRef": "Estimated Opportunity Value"
             },
             {
               "field": {

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "ce7c5a4f604758f1d05f",
   "position": {
     "x": 1168,
@@ -23,12 +23,11 @@
                       "Entity": "Opportunities"
                     }
                   },
-                  "Property": "status"
+                  "Property": "Status"
                 }
               },
-              "queryRef": "Opportunities.status",
-              "nativeQueryRef": "Status",
-              "displayName": "Status",
+              "queryRef": "Opportunities.Status",
+              "nativeQueryRef": "Status1",
               "active": true
             }
           ]

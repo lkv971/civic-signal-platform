@@ -3,7 +3,7 @@
   "metadata": {
     "type": "DataPipeline",
     "displayName": "PL_CivicSignal_Data_Platform",
-    "description": "Sequentially orchestrates Civic Signal Bronze ingestion, Silver transformation, and Gold core refresh."
+    "description": "Master orchestration pipeline executing Bronze ingestion, Silver transformation, and Gold warehouse refresh sequentially."
   },
   "config": {
     "version": "2.0",

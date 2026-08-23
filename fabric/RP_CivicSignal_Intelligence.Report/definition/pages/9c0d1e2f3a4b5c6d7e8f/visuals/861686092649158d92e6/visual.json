@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "861686092649158d92e6",
   "position": {
     "x": 32,
@@ -20,75 +20,70 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Duplicate Candidates"
+                      "Entity": "Opportunities"
                     }
                   },
-                  "Property": "opportunity_id"
+                  "Property": "Opportunity ID"
                 }
               },
-              "queryRef": "Duplicate Candidates.opportunity_id",
-              "nativeQueryRef": "Opportunity ID",
-              "displayName": "Opportunity ID"
+              "queryRef": "Opportunities.Opportunity ID",
+              "nativeQueryRef": "Opportunity ID1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Duplicate Candidates"
+                      "Entity": "Opportunities"
                     }
                   },
-                  "Property": "title"
+                  "Property": "Opportunity"
                 }
               },
-              "queryRef": "Duplicate Candidates.title",
-              "nativeQueryRef": "Opportunity",
-              "displayName": "Opportunity"
+              "queryRef": "Opportunities.Opportunity",
+              "nativeQueryRef": "Opportunity1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Duplicate Candidates"
+                      "Entity": "Opportunities"
                     }
                   },
-                  "Property": "buyer_name"
+                  "Property": "Buyer"
                 }
               },
-              "queryRef": "Duplicate Candidates.buyer_name",
-              "nativeQueryRef": "Buyer",
-              "displayName": "Buyer"
+              "queryRef": "Opportunities.Buyer",
+              "nativeQueryRef": "Buyer1"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Duplicate Candidates"
+                      "Entity": "Opportunities"
                     }
                   },
-                  "Property": "source_system"
+                  "Property": "Official Source"
                 }
               },
-              "queryRef": "Duplicate Candidates.source_system",
-              "nativeQueryRef": "Source system",
-              "displayName": "Source system"
+              "queryRef": "Opportunities.Official Source",
+              "nativeQueryRef": "Official Source"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Duplicate Candidates"
+                      "Entity": "Opportunities"
                     }
                   },
-                  "Property": "published_date"
+                  "Property": "Published Date"
                 }
               },
-              "queryRef": "Duplicate Candidates.published_date",
-              "nativeQueryRef": "Published",
-              "displayName": "Published"
+              "queryRef": "Opportunities.Published Date",
+              "nativeQueryRef": "Published Date"
             }
           ]
         }
