@@ -4,26 +4,22 @@
       {
         "type": "TridentNotebook",
         "typeProperties": {
-          "notebookId": "2afad4e9-b1e9-969c-4dda-238f329fdc6e",
+          "notebookId": "12a18f4e-a25f-af1e-427b-0b62499af414",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
           "parameters": {
-            "p_ingestion_batch_id": {
+            "p_silver_run_id": {
               "value": {
                 "value": "@pipeline().RunId",
                 "type": "Expression"
               },
               "type": "string"
             },
-            "p_source_environment": {
-              "value": "synthetic",
-              "type": "string"
-            },
-            "p_seed": {
-              "value": "42",
-              "type": "int"
+            "p_fail_on_dq_error": {
+              "value": true,
+              "type": "bool"
             }
           },
-          "sessionTag": "civic_signal_bronze"
+          "sessionTag": "civic_signal_silver"
         },
         "policy": {
           "timeout": "0.12:00:00",
@@ -32,7 +28,7 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Run_Bronze_Synthetic_Ingestion",
+        "name": "Run_Silver_Transform_Core",
         "dependsOn": []
       }
     ]

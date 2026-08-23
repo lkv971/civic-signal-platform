@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "NB_01_Bronze_Load_Synthetic_Sources"
+    "displayName": "NB_01_Bronze_Load_Synthetic_Sources",
+    "description": "Metadata-driven PySpark ingestion notebook that generates and lands synthetic buyer and opportunity records from fictional procurement sources."
   },
   "config": {
     "version": "2.0",

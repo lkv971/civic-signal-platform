@@ -1,0 +1,11 @@
+expression 'DirectLake - WH_CivicSignal_Gold' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/33c8bc67-ef39-4ee1-9049-d38e9d32e75e/7d0f8c3d-e67a-46df-9bd0-4034dfa33144", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: e3b66dd7-985e-49c3-8590-415b93794017
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[ops].[gold_refresh_runs]"}},"objectType":"Table"}]
+
