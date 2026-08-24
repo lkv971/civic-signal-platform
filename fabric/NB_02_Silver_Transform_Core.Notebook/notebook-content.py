@@ -66,6 +66,7 @@ from pyspark.sql import functions as F
 from pyspark.sql.types import (
     BooleanType,
     DecimalType,
+    IntegerType,
     LongType,
     StringType,
     StructField,
@@ -85,6 +86,7 @@ BRONZE_MANIFEST_TABLE = "LH_CivicSignal_Bronze.dbo.bronze_ingestion_manifest"
 SILVER_SOURCES_TABLE = "dbo.silver_sources"
 SILVER_BUYERS_TABLE = "dbo.silver_buyers"
 SILVER_OPPORTUNITIES_TABLE = "dbo.silver_opportunities"
+SILVER_CATEGORIES_TABLE = "dbo.silver_procurement_categories"
 SILVER_DUPLICATES_TABLE = "dbo.silver_opportunity_duplicate_candidates"
 SILVER_DQ_TABLE = "dbo.silver_data_quality_results"
 SILVER_RUNS_TABLE = "dbo.silver_processing_runs"
@@ -633,6 +635,33 @@ valid_opportunity_raw_df = opportunity_checked_raw_df.join(
 # 8. GOVERNED OPPORTUNITY ROWS AND DUPLICATE CANDIDATES
 # ============================================================
 
+category_schema = StructType([
+    StructField("category_id", IntegerType(), False),
+    StructField("category_name", StringType(), False),
+    StructField("sort_order", IntegerType(), False),
+])
+
+category_rows = [
+    (1, "Digital Services", 1),
+    (2, "Construction & Works", 2),
+    (3, "Professional Services", 3),
+    (4, "Facilities & Maintenance", 4),
+    (5, "Goods & Supplies", 5),
+    (6, "Healthcare Supplies", 6),
+    (7, "Transport & Logistics", 7),
+    (8, "Energy & Utilities", 8),
+]
+
+silver_categories_df = spark.createDataFrame(category_rows, category_schema)
+
+category_id_map = F.create_map(
+    *[
+        item
+        for category_id, category_name, _ in category_rows
+        for item in (F.lit(category_name), F.lit(category_id))
+    ]
+)
+
 category_map = F.create_map(
     F.lit("Digital services"),
     F.lit("Digital Services"),
@@ -689,6 +718,10 @@ opportunity_business_base_df = (
         F.element_at(category_map, F.col("payload.category_raw")).alias(
             "category_normalized"
         ),
+        F.element_at(
+            category_id_map,
+            F.element_at(category_map, F.col("payload.category_raw"))
+        ).cast("integer").alias("category_id"),
         F.when(F.col("payload.category_raw").isNull(), F.lit("MISSING"))
         .when(
             F.element_at(category_map, F.col("payload.category_raw")).isNotNull(),
@@ -733,6 +766,7 @@ opportunity_business_base_df = (
                 "buyer_name",
                 "category_raw",
                 "category_normalized",
+                "category_id",
                 "category_quality_status",
                 "status_raw",
                 "status",
@@ -782,6 +816,7 @@ silver_opportunities_df = (
         "buyer_name",
         "category_raw",
         "category_normalized",
+        "category_id",
         "category_quality_status",
         "status_raw",
         "status",
@@ -934,6 +969,26 @@ merge_delta(
     "target.source_system = source.source_system AND target.buyer_id = source.buyer_id",
 )
 
+silver_categories_df.write \
+    .format("delta") \
+    .mode("overwrite") \
+    .option("overwriteSchema", "true") \
+    .saveAsTable(SILVER_CATEGORIES_TABLE)
+
+
+# Explicit additive schema evolution for the new governed category key.
+if spark.catalog.tableExists(SILVER_OPPORTUNITIES_TABLE):
+    opportunity_columns = {
+        field.name.lower()
+        for field in spark.table(SILVER_OPPORTUNITIES_TABLE).schema.fields
+    }
+
+    if "category_id" not in opportunity_columns:
+        spark.sql(
+            f"ALTER TABLE {SILVER_OPPORTUNITIES_TABLE} "
+            "ADD COLUMNS (category_id INT)"
+        )
+
 merge_delta(
     silver_opportunities_df,
     SILVER_OPPORTUNITIES_TABLE,
@@ -987,6 +1042,14 @@ validation_sources_df = spark.table(SILVER_SOURCES_TABLE).agg(
     F.count(F.lit(1)).alias("source_row_count")
 )
 
+validation_categories = spark.table(SILVER_CATEGORIES_TABLE)
+
+validation_categories_df = validation_categories.agg(
+    F.count(F.lit(1)).alias("category_row_count"),
+    F.countDistinct("category_id").alias("distinct_category_ids"),
+    F.countDistinct("category_name").alias("distinct_category_names"),
+)
+
 validation_buyers = spark.table(SILVER_BUYERS_TABLE)
 validation_buyers_df = validation_buyers.agg(
     F.count(F.lit(1)).alias("buyer_row_count")
@@ -995,6 +1058,15 @@ validation_buyers_df = validation_buyers.agg(
 validation_opportunities = spark.table(SILVER_OPPORTUNITIES_TABLE)
 validation_opportunities_df = validation_opportunities.agg(
     F.count(F.lit(1)).alias("opportunity_row_count")
+)
+
+category_mapping_validation_df = validation_opportunities.agg(
+    F.sum(
+        F.when(F.col("category_id").isNotNull(), 1).otherwise(0)
+    ).alias("mapped_category_opportunities"),
+    F.sum(
+        F.when(F.col("category_id").isNull(), 1).otherwise(0)
+    ).alias("unmapped_category_opportunities"),
 )
 
 validation_candidates = spark.table(SILVER_DUPLICATES_TABLE).filter(
@@ -1019,6 +1091,8 @@ duplicate_opportunity_keys_df = (
     .filter(F.col("count") > 1)
     .agg(F.count(F.lit(1)).alias("duplicate_opportunity_business_keys"))
 )
+
+
 
 orphan_opportunity_buyers_df = (
     validation_opportunities.select("buyer_key")
@@ -1057,8 +1131,10 @@ validation_run_df = (
 )
 
 validation_report_df = (
-    validation_sources_df.crossJoin(validation_buyers_df)
+    validation_sources_df.crossJoin(validation_categories_df)
+    .crossJoin(validation_buyers_df)
     .crossJoin(validation_opportunities_df)
+    .crossJoin(category_mapping_validation_df)
     .crossJoin(validation_candidates_df)
     .crossJoin(duplicate_buyer_keys_df)
     .crossJoin(duplicate_opportunity_keys_df)

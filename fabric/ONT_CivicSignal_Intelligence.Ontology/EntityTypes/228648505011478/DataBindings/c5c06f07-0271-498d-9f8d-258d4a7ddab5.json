@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "c5c06f07-0271-498d-9f8d-258d4a7ddab5",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "buyer_id",
+        "targetPropertyId": "5484948559720590245"
+      },
+      {
+        "sourceColumnName": "buyer_key",
+        "targetPropertyId": "6124231620040643392"
+      },
+      {
+        "sourceColumnName": "buyer_name",
+        "targetPropertyId": "6124231618794546049"
+      },
+      {
+        "sourceColumnName": "category_normalized",
+        "targetPropertyId": "6124231616210677036"
+      },
+      {
+        "sourceColumnName": "category_quality_status",
+        "targetPropertyId": "5484948720049418897"
+      },
+      {
+        "sourceColumnName": "category_raw",
+        "targetPropertyId": "6124231616525014879"
+      },
+      {
+        "sourceColumnName": "closing_date",
+        "targetPropertyId": "5484948972284697527"
+      },
+      {
+        "sourceColumnName": "country",
+        "targetPropertyId": "5484948835004417323"
+      },
+      {
+        "sourceColumnName": "country_code",
+        "targetPropertyId": "5484948855972322652"
+      },
+      {
+        "sourceColumnName": "currency_code",
+        "targetPropertyId": "6124231618147184567"
+      },
+      {
+        "sourceColumnName": "days_to_close",
+        "targetPropertyId": "6124231618802937452"
+      },
+      {
+        "sourceColumnName": "description",
+        "targetPropertyId": "6124231619239563963"
+      },
+      {
+        "sourceColumnName": "duplicate_group_hint",
+        "targetPropertyId": "6124231619617744596"
+      },
+      {
+        "sourceColumnName": "estimated_value",
+        "targetPropertyId": "6124231617779190836"
+      },
+      {
+        "sourceColumnName": "external_reference",
+        "targetPropertyId": "6124231620003102054"
+      },
+      {
+        "sourceColumnName": "first_seen_at_utc",
+        "targetPropertyId": "6124231618438185484"
+      },
+      {
+        "sourceColumnName": "ingestion_batch_id",
+        "targetPropertyId": "6124231616183941423"
+      },
+      {
+        "sourceColumnName": "is_synthetic",
+        "targetPropertyId": "6124231617906534142"
+      },
+      {
+        "sourceColumnName": "last_seen_at_utc",
+        "targetPropertyId": "6124231619573812101"
+      },
+      {
+        "sourceColumnName": "official_source_url",
+        "targetPropertyId": "6124231619634538676"
+      },
+      {
+        "sourceColumnName": "opportunity_id",
+        "targetPropertyId": "5484948421989045881"
+      },
+      {
+        "sourceColumnName": "potential_duplicate_flag",
+        "targetPropertyId": "6124231618420156176"
+      },
+      {
+        "sourceColumnName": "processed_at_utc",
+        "targetPropertyId": "6124231616276700682"
+      },
+      {
+        "sourceColumnName": "published_date",
+        "targetPropertyId": "5484948925484532130"
+      },
+      {
+        "sourceColumnName": "record_hash",
+        "targetPropertyId": "6124231615983862858"
+      },
+      {
+        "sourceColumnName": "region",
+        "targetPropertyId": "5484948897496780424"
+      },
+      {
+        "sourceColumnName": "schema_version",
+        "targetPropertyId": "6124231619786433534"
+      },
+      {
+        "sourceColumnName": "silver_run_id",
+        "targetPropertyId": "6124231619180346444"
+      },
+      {
+        "sourceColumnName": "source_environment",
+        "targetPropertyId": "6124231619512931431"
+      },
+      {
+        "sourceColumnName": "source_record_id",
+        "targetPropertyId": "6124231618425520767"
+      },
+      {
+        "sourceColumnName": "source_system",
+        "targetPropertyId": "6124231619399336203"
+      },
+      {
+        "sourceColumnName": "status",
+        "targetPropertyId": "5484948810434891119"
+      },
+      {
+        "sourceColumnName": "status_raw",
+        "targetPropertyId": "6124231620049797776"
+      },
+      {
+        "sourceColumnName": "title",
+        "targetPropertyId": "6124231617650884279"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "8d8f670d-2f64-8fe0-4c86-6c859acb4c25",
+      "sourceTableName": "silver_opportunities",
+      "sourceSchema": "dbo"
+    }
+  }
+}

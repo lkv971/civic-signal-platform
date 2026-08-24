@@ -1,5 +1,5 @@
 /// Governed procurement category taxonomy used to classify and analyze opportunities.
-table 'Procurement Category'
+table procurement_category
 	lineageTag: 02e3d826-4169-4034-bc1c-9cf856bbb971
 	sourceLineageTag: [dim].[procurement_category]
 

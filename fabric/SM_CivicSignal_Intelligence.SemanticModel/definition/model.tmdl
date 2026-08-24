@@ -12,10 +12,10 @@ annotation PBI_QueryOrder = ["DirectLake - WH_CivicSignal_Gold"]
 
 annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","MCP-PBIModeling"]
 
-ref table Date
-ref table Sources
-ref table Buyers
-ref table 'Procurement Category'
-ref table Opportunities
-ref table 'Duplicate Candidates'
+ref table date
+ref table source
+ref table buyer
+ref table procurement_category
+ref table opportunity
+ref table opportunity_duplicate_candidate
 
