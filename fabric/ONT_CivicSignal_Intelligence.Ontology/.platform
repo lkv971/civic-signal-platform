@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Ontology",
-    "displayName": "ONT_CivicSignal_Intelligence"
+    "displayName": "ONT_CivicSignal_Intelligence",
+    "description": "Governed synthetic procurement ontology for Civic Signal, modeling\nopportunities, buyers, procurement sources, categories, and their business\nrelationships to support graph traversal, semantic reasoning, and future\nAI agent experiences.\n"
   },
   "config": {
     "version": "2.0",
