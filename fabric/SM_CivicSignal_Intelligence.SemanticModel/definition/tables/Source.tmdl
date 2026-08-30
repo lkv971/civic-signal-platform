@@ -1,5 +1,5 @@
 /// Synthetic procurement source systems from which Civic Signal opportunities and buyer records are collected.
-table source
+table Source
 	lineageTag: e73c4811-da2e-4adb-b92d-74d13f65ed7b
 	sourceLineageTag: [dim].[source]
 

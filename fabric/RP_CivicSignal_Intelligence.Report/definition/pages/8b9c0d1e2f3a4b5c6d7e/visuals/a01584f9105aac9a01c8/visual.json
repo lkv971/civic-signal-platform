@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "Buyer.Buyer",
-              "nativeQueryRef": "Buyer1",
+              "nativeQueryRef": "Buyer",
               "active": true
             }
           ]

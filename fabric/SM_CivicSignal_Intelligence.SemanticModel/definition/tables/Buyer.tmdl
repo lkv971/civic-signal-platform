@@ -1,5 +1,5 @@
 /// Public-sector buyer organizations associated with procurement opportunities.
-table buyer
+table Buyer
 	lineageTag: 4fc97034-6dd4-4512-9731-67c741d0e239
 	sourceLineageTag: [dim].[buyer]
 

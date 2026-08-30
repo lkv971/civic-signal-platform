@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "59d7eddcbdd1306fd21e",
   "position": {
     "x": 960,
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "Procurement Category.Category",
-              "nativeQueryRef": "Category",
-              "displayName": "Category",
+              "nativeQueryRef": "Category1",
               "active": true
             }
           ]
@@ -51,24 +50,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Opportunities"
-                  }
-                },
-                "Property": "Estimated Opportunity Value"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
