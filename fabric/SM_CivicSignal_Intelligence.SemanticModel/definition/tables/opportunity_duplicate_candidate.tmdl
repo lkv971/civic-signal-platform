@@ -1,5 +1,5 @@
 /// Cross-source opportunity records identified as potential duplicates for review. Candidate status does not mean the records are confirmed duplicates.
-table 'Duplicate Candidates'
+table opportunity_duplicate_candidate
 	lineageTag: 72e05236-f657-4ab0-b2f7-5e7eafeaa9d1
 	sourceLineageTag: [fact].[opportunity_duplicate_candidate]
 
