@@ -2,7 +2,7 @@
    4. GOLD REFRESH PROCEDURE
    ============================================================ */
 
-CREATE   PROCEDURE ops.usp_refresh_gold_core
+CREATE OR ALTER PROCEDURE ops.usp_refresh_gold_core
 AS
 BEGIN
 
@@ -199,12 +199,8 @@ BEGIN
     MERGE fact.opportunity AS t
     USING
     (
-        SELECT
-            o.*,
-            c.category_id
+        SELECT o.*
         FROM [LH_CivicSignal_Silver].[dbo].[silver_opportunities] o
-        LEFT JOIN dim.procurement_category c
-          ON c.category = o.category_normalized
     ) AS s
       ON t.opportunity_key = s.opportunity_key
 
