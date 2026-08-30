@@ -23,10 +23,10 @@
                       "Entity": "Procurement Category"
                     }
                   },
-                  "Property": "category"
+                  "Property": "Category"
                 }
               },
-              "queryRef": "Procurement Category.category",
+              "queryRef": "Procurement Category.Category",
               "nativeQueryRef": "Category",
               "displayName": "Category",
               "active": true
