@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sources"
+                      "Entity": "Source"
                     }
                   },
                   "Property": "Source"
                 }
               },
-              "queryRef": "Sources.Source",
-              "nativeQueryRef": "Source",
+              "queryRef": "Source.Source",
+              "nativeQueryRef": "Source1",
               "active": true
             }
           ]

@@ -1,25 +1,25 @@
 relationship 'Buyers to Opportunities'
-	fromColumn: opportunity.buyer_key
-	toColumn: buyer.buyer_key
+	fromColumn: Opportunities.buyer_key
+	toColumn: Buyer.buyer_key
 
 relationship 'Sources to Opportunities'
-	fromColumn: opportunity.source_system
-	toColumn: source.'Source Code'
+	fromColumn: Opportunities.source_system
+	toColumn: Source.'Source Code'
 
 relationship 'Procurement Category to Opportunities'
-	fromColumn: opportunity.category_id
-	toColumn: procurement_category.category_id
+	fromColumn: Opportunities.category_id
+	toColumn: 'Procurement Category'.category_id
 
 relationship 'Date to Opportunities by Published Date'
-	fromColumn: opportunity.'Published Date'
-	toColumn: date.Date
+	fromColumn: Opportunities.'Published Date'
+	toColumn: Date.Date
 
 relationship 'Date to Opportunities by Closing Date'
 	isActive: false
-	fromColumn: opportunity.'Closing Date'
-	toColumn: date.Date
+	fromColumn: Opportunities.'Closing Date'
+	toColumn: Date.Date
 
 relationship 'Opportunities to Duplicate Candidates'
-	fromColumn: opportunity_duplicate_candidate.opportunity_key
-	toColumn: opportunity.opportunity_key
+	fromColumn: 'Duplicate Candidates'.opportunity_key
+	toColumn: Opportunities.opportunity_key
 

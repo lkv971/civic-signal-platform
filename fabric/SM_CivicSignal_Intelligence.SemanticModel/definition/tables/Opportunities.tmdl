@@ -1,10 +1,10 @@
 /// Current-state procurement opportunities used for Civic Signal discovery, trend, buyer, category, value, status, and quality analysis.
-table opportunity
+table Opportunities
 	lineageTag: 72f9d3d0-838f-46c1-a319-705873007fd8
 	sourceLineageTag: [fact].[opportunity]
 
 	/// Total number of procurement opportunities in the current filter context.
-	measure 'Opportunity Count' = COUNTROWS('opportunity')
+	measure 'Opportunity Count' = COUNTROWS('Opportunities')
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: baef17f4-0b53-4112-a6ce-e6baaadc4d13
@@ -13,7 +13,7 @@ table opportunity
 	measure 'Open Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'opportunity'[Status] = "Open"
+			    'Opportunities'[Status] = "Open"
 			)
 		formatString: #,##0
 		displayFolder: Counts
@@ -23,7 +23,7 @@ table opportunity
 	measure 'Awarded Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'opportunity'[Status] = "Awarded"
+			    'Opportunities'[Status] = "Awarded"
 			)
 		formatString: #,##0
 		displayFolder: Counts
@@ -33,7 +33,7 @@ table opportunity
 	measure 'Cancelled Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'opportunity'[Status] = "Cancelled"
+			    'Opportunities'[Status] = "Cancelled"
 			)
 		formatString: #,##0
 		displayFolder: Counts
@@ -43,26 +43,26 @@ table opportunity
 	measure 'Duplicate Candidate Opportunities' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'opportunity'[Potential Duplicate] = TRUE()
+			    'Opportunities'[Potential Duplicate] = TRUE()
 			)
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: a6729976-78e1-42a5-bb5b-a6854e2156bc
 
 	/// Total estimated value of opportunities with populated estimated values.
-	measure 'Estimated Opportunity Value' = SUM('opportunity'[Estimated Value])
+	measure 'Estimated Opportunity Value' = SUM('Opportunities'[Estimated Value])
 		formatString: #,##0.##
 		displayFolder: Value
 		lineageTag: e5eef717-c86c-4ace-a263-a48abb944af5
 
 	/// Average estimated value across opportunities with populated values.
-	measure 'Average Estimated Value' = AVERAGE('opportunity'[Estimated Value])
+	measure 'Average Estimated Value' = AVERAGE('Opportunities'[Estimated Value])
 		formatString: #,##0.##
 		displayFolder: Value
 		lineageTag: 8ebc8d58-7f3b-4360-bd8e-4504eb7e2569
 
 	/// Average number of days between opportunity publication and closing.
-	measure 'Average Days To Close' = AVERAGE('opportunity'[Days to Close])
+	measure 'Average Days To Close' = AVERAGE('Opportunities'[Days to Close])
 		formatString: #,##0.00
 		displayFolder: Cycle Time
 		lineageTag: befc7ab9-c5b6-478d-bd5c-7cccb3092033
@@ -71,20 +71,20 @@ table opportunity
 	measure 'Opportunities Missing Category' =
 			CALCULATE(
 			    [Opportunity Count],
-			    'opportunity'[Category Quality Status] = "MISSING"
+			    'Opportunities'[Category Quality Status] = "MISSING"
 			)
 		formatString: #,##0
 		displayFolder: Data Quality
 		lineageTag: 493dd8b8-b416-403f-87da-9d64725858ff
 
 	/// Number of distinct buyer organizations represented by opportunities.
-	measure 'Distinct Buyers' = DISTINCTCOUNT('opportunity'[buyer_key])
+	measure 'Distinct Buyers' = DISTINCTCOUNT('Opportunities'[buyer_key])
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: 34725065-ad0a-4c8a-a008-895f53e78b3c
 
 	/// Number of distinct procurement source systems represented by opportunities.
-	measure 'Distinct Sources' = DISTINCTCOUNT('opportunity'[source_system])
+	measure 'Distinct Sources' = DISTINCTCOUNT('Opportunities'[source_system])
 		formatString: #,##0
 		displayFolder: Counts
 		lineageTag: 9cea31e6-17b6-4193-9eba-345b7f449100
@@ -94,8 +94,8 @@ table opportunity
 			CALCULATE(
 			    [Opportunity Count],
 			    USERELATIONSHIP(
-			        'date'[Date],
-			        'opportunity'[Closing Date]
+			        'Date'[Date],
+			        'Opportunities'[Closing Date]
 			    )
 			)
 		formatString: #,##0

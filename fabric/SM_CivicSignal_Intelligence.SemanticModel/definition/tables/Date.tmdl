@@ -1,5 +1,5 @@
 /// Calendar dimension used for published-date and closing-date analysis of procurement opportunities.
-table date
+table Date
 	lineageTag: f2a3d308-7747-420b-a161-bcf89f88af45
 	sourceLineageTag: [dim].[date]
 	dataCategory: Time
