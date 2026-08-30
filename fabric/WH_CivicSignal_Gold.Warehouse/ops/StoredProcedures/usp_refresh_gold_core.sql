@@ -2,7 +2,7 @@
    4. GOLD REFRESH PROCEDURE
    ============================================================ */
 
-CREATE OR ALTER PROCEDURE ops.usp_refresh_gold_core
+CREATE   PROCEDURE ops.usp_refresh_gold_core
 AS
 BEGIN
 
