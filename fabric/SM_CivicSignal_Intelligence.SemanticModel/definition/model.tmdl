@@ -10,7 +10,7 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_QueryOrder = ["DirectLake - WH_CivicSignal_Gold"]
 
-annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","MCP-PBIModeling"]
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","MCP-PBIModeling","WebModelingEdit","CopilotTooling"]
 
 ref table Date
 ref table Source
@@ -18,4 +18,6 @@ ref table Buyer
 ref table 'Procurement Category'
 ref table Opportunities
 ref table 'Duplicate Candidates'
+
+ref cultureInfo en-US
 

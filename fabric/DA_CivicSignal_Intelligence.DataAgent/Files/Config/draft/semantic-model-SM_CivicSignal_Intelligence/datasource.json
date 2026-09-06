@@ -1,0 +1,597 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/dataSource/1.0.0/schema.json",
+  "artifactId": "75a860d9-0cd6-87ed-4676-aff640013e41",
+  "workspaceId": "00000000-0000-0000-0000-000000000000",
+  "dataSourceInstructions": null,
+  "displayName": "SM_CivicSignal_Intelligence",
+  "type": "semantic_model",
+  "userDescription": null,
+  "metadata": null,
+  "elements": [
+    {
+      "id": "f2a3d308-7747-420b-a161-bcf89f88af45",
+      "is_selected": true,
+      "display_name": "Date",
+      "type": "semantic_model.table",
+      "description": "Calendar dimension used for published-date and closing-date analysis of procurement opportunities.",
+      "children": [
+        {
+          "id": "eff7b7c5-998b-4aab-94fa-358018025c63",
+          "is_selected": true,
+          "display_name": "Date",
+          "type": "semantic_model.column",
+          "data_type": "DateTime",
+          "description": "Calendar date used to filter opportunities by publication date or closing deadline.",
+          "children": []
+        },
+        {
+          "id": "938fe9da-63d9-46b3-925f-9efba2dccae7",
+          "is_selected": true,
+          "display_name": "Year",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Calendar year containing the date.",
+          "children": []
+        },
+        {
+          "id": "4a5937d3-133c-419a-a8cf-4a19ed887c39",
+          "is_selected": true,
+          "display_name": "Quarter Number",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Numeric calendar quarter from 1 to 4, used to order quarter labels.",
+          "children": []
+        },
+        {
+          "id": "582326d9-9b82-45ac-8a5a-6bb3c326a77e",
+          "is_selected": true,
+          "display_name": "Quarter",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Calendar quarter label used to group opportunity dates.",
+          "children": []
+        },
+        {
+          "id": "478f210a-43ec-445b-9715-34ba0173813a",
+          "is_selected": true,
+          "display_name": "Month",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Calendar month name used to group dates; sorted chronologically by Month Number.",
+          "children": []
+        },
+        {
+          "id": "eb985e3d-9bc1-4198-9b7e-c109ce835e6a",
+          "is_selected": true,
+          "display_name": "Year Month",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Year-and-month label used for chronological monthly analysis.",
+          "children": []
+        },
+        {
+          "id": "15fa0b3e-4138-492f-a2a3-dafb61ab5204",
+          "is_selected": true,
+          "display_name": "Month Start",
+          "type": "semantic_model.column",
+          "data_type": "DateTime",
+          "description": "First calendar date of the month containing the selected date.",
+          "children": []
+        },
+        {
+          "id": "834944e9-d795-454c-83c8-4df99053bb83",
+          "is_selected": true,
+          "display_name": "Month End",
+          "type": "semantic_model.column",
+          "data_type": "DateTime",
+          "description": "Last calendar date of the month containing the selected date.",
+          "children": []
+        },
+        {
+          "id": "ee568d65-25d2-4a08-a4df-a6786404552d",
+          "is_selected": true,
+          "display_name": "ISO Week",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "ISO 8601 week number containing the date.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "e73c4811-da2e-4adb-b92d-74d13f65ed7b",
+      "is_selected": true,
+      "display_name": "Source",
+      "type": "semantic_model.table",
+      "description": "Synthetic procurement source systems from which Civic Signal opportunities and buyer records are collected.",
+      "children": [
+        {
+          "id": "ca72db00-eecf-4d27-9c77-7d94836794fc",
+          "is_selected": true,
+          "display_name": "Source Code",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Stable business code identifying the procurement source system.",
+          "children": []
+        },
+        {
+          "id": "229e6278-cce2-4c70-b134-6847812fb3c1",
+          "is_selected": true,
+          "display_name": "Source",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Friendly name of the procurement source system.",
+          "children": []
+        },
+        {
+          "id": "71b01b2b-ba22-4b06-a066-167572eafe15",
+          "is_selected": true,
+          "display_name": "Source Type",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Classification of the procurement source, such as a portal or other source system.",
+          "children": []
+        },
+        {
+          "id": "b91e4773-337d-4c4a-88ef-dab82115bd43",
+          "is_selected": true,
+          "display_name": "Enabled",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "Indicates whether the source is enabled for governed ingestion.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "4fc97034-6dd4-4512-9731-67c741d0e239",
+      "is_selected": true,
+      "display_name": "Buyer",
+      "type": "semantic_model.table",
+      "description": "Public-sector buyer organizations associated with procurement opportunities.",
+      "children": [
+        {
+          "id": "7fa1e01f-9ae5-41a2-b0e0-45b54125f5a5",
+          "is_selected": true,
+          "display_name": "Buyer ID",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Source-facing business identifier for the buyer organization.",
+          "children": []
+        },
+        {
+          "id": "23914df1-a81a-4d04-8dd1-95621c45dd0a",
+          "is_selected": true,
+          "display_name": "Buyer",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Name of the public-sector buyer organization.",
+          "children": []
+        },
+        {
+          "id": "9d7e802f-b6a5-4223-beab-046f6670aa0a",
+          "is_selected": true,
+          "display_name": "Buyer Type",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Classification of the public-sector organization acting as buyer.",
+          "children": []
+        },
+        {
+          "id": "712339ce-9e43-4981-8a9f-11052a19e628",
+          "is_selected": true,
+          "display_name": "Country",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Country in which the buyer organization is located.",
+          "children": []
+        },
+        {
+          "id": "54902647-8793-44bc-95b5-51aa7b8e1fe4",
+          "is_selected": true,
+          "display_name": "Country Code",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Source-provided country code for the buyer organization.",
+          "children": []
+        },
+        {
+          "id": "c50e6b84-d9ef-431f-acdc-0408b35aaea4",
+          "is_selected": true,
+          "display_name": "Region",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Geographic or administrative region associated with the buyer.",
+          "children": []
+        },
+        {
+          "id": "b173214b-c46a-4290-9156-ead26894f84a",
+          "is_selected": true,
+          "display_name": "Website",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Official website for the buyer organization when available.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "02e3d826-4169-4034-bc1c-9cf856bbb971",
+      "is_selected": true,
+      "display_name": "Procurement Category",
+      "type": "semantic_model.table",
+      "description": "Governed procurement category taxonomy used to classify and analyze opportunities.",
+      "children": [
+        {
+          "id": "07c8e658-b74c-438e-839c-6cc3caa0b6bb",
+          "is_selected": true,
+          "display_name": "Category",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Governed procurement category used for filtering and analysis.",
+          "children": []
+        },
+        {
+          "id": "9760fa42-8874-4c91-831c-bc5c466e4638",
+          "is_selected": true,
+          "display_name": "Active",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": "Indicates whether the category is available for current classification and reporting.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "72f9d3d0-838f-46c1-a319-705873007fd8",
+      "is_selected": true,
+      "display_name": "Opportunities",
+      "type": "semantic_model.table",
+      "description": "Current-state procurement opportunities used for Civic Signal discovery, trend, buyer, category, value, status, and quality analysis.",
+      "children": [
+        {
+          "id": "ccaaf9d8-2de9-47b2-b80b-687914837000",
+          "is_selected": true,
+          "display_name": "Opportunity ID",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Source-facing business identifier for the procurement opportunity.",
+          "children": []
+        },
+        {
+          "id": "3af0815c-02d1-4fa3-b81d-03e0407b159a",
+          "is_selected": true,
+          "display_name": "Reference",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Source-facing reference used to identify the procurement opportunity.",
+          "children": []
+        },
+        {
+          "id": "2399c928-2ea1-474b-b98a-57d3f62974e3",
+          "is_selected": true,
+          "display_name": "Opportunity",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Title describing the procurement requirement.",
+          "children": []
+        },
+        {
+          "id": "ebc2dac6-19e7-4ca9-8e88-febec91c833e",
+          "is_selected": true,
+          "display_name": "Opportunity Description",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Narrative detail describing the procurement requirement and scope.",
+          "children": []
+        },
+        {
+          "id": "fe9c95cf-996a-4369-9980-318088208a1f",
+          "is_selected": true,
+          "display_name": "Buyer ID",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Source-facing identifier of the buyer associated with the opportunity.",
+          "children": []
+        },
+        {
+          "id": "ea88dbd6-8c09-40ab-a851-b43647ef6d21",
+          "is_selected": true,
+          "display_name": "Buyer",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Buyer organization associated with the procurement opportunity.",
+          "children": []
+        },
+        {
+          "id": "6ba531c3-028c-44a6-8625-c76f9e4b926e",
+          "is_selected": true,
+          "display_name": "Source Category",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Original category label supplied by the source before governed classification.",
+          "children": []
+        },
+        {
+          "id": "fa4b622b-3785-4a8b-a704-5270dd8a4243",
+          "is_selected": true,
+          "display_name": "Procurement Category",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Governed category assigned to the opportunity for analysis and filtering.",
+          "children": []
+        },
+        {
+          "id": "73e0c9e9-2933-4acf-b2ee-e40c338f03eb",
+          "is_selected": true,
+          "display_name": "Category Quality Status",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Indicates whether the opportunity category was classified, missing, or unclassified.",
+          "children": []
+        },
+        {
+          "id": "ee1ccb5d-3eab-4d9a-adea-e5d6e91fe132",
+          "is_selected": true,
+          "display_name": "Source Status",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Original lifecycle status supplied by the procurement source.",
+          "children": []
+        },
+        {
+          "id": "041d9acd-2bb0-4104-b47b-dc62f0476332",
+          "is_selected": true,
+          "display_name": "Status",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Normalized lifecycle status of the procurement opportunity.",
+          "children": []
+        },
+        {
+          "id": "c19378ab-1b01-41a8-87d0-0020889f4068",
+          "is_selected": true,
+          "display_name": "Country",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Country in which the procurement opportunity applies.",
+          "children": []
+        },
+        {
+          "id": "e94c277b-16f4-419f-915b-3a0b20be2c73",
+          "is_selected": true,
+          "display_name": "Country Code",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Source-provided country code for the procurement opportunity.",
+          "children": []
+        },
+        {
+          "id": "b92df63a-ff02-4e93-a11a-ecf5e0eaff96",
+          "is_selected": true,
+          "display_name": "Region",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Geographic or administrative region associated with the opportunity.",
+          "children": []
+        },
+        {
+          "id": "05837caf-1314-4f35-95e5-db8af97f195e",
+          "is_selected": true,
+          "display_name": "Published Date",
+          "type": "semantic_model.column",
+          "data_type": "DateTime",
+          "description": "Date the procurement opportunity was published.",
+          "children": []
+        },
+        {
+          "id": "c567051a-b974-4071-80a8-2957bc005626",
+          "is_selected": true,
+          "display_name": "Closing Date",
+          "type": "semantic_model.column",
+          "data_type": "DateTime",
+          "description": "Deadline for responses to the procurement opportunity.",
+          "children": []
+        },
+        {
+          "id": "e0d60ad6-4776-42aa-a33b-aec16654a569",
+          "is_selected": true,
+          "display_name": "Currency",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Currency code applying to the opportunity's estimated value.",
+          "children": []
+        },
+        {
+          "id": "7a3f306c-3240-449f-84ed-466c7e83e939",
+          "is_selected": true,
+          "display_name": "Official Source",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "URL of the authoritative source listing for the procurement opportunity.",
+          "children": []
+        },
+        {
+          "id": "9f73148f-2145-4e46-871f-5314e6825845",
+          "is_selected": true,
+          "display_name": "Potential Duplicate",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": "Indicates that the record may match an opportunity from another source and requires review.",
+          "children": []
+        },
+        {
+          "id": "baef17f4-0b53-4112-a6ce-e6baaadc4d13",
+          "is_selected": true,
+          "display_name": "Opportunity Count",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Total number of procurement opportunities in the current filter context.",
+          "children": []
+        },
+        {
+          "id": "a23a5bea-d6df-4748-a02f-437706bda0ba",
+          "is_selected": true,
+          "display_name": "Open Opportunities",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Number of opportunities whose normalized status is Open.",
+          "children": []
+        },
+        {
+          "id": "ed4798c9-af90-4e80-84ca-ad4b5cfb9949",
+          "is_selected": true,
+          "display_name": "Awarded Opportunities",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Number of opportunities whose normalized status is Awarded.",
+          "children": []
+        },
+        {
+          "id": "f003b538-b1f3-4c97-92d9-1a1fe8577eb4",
+          "is_selected": true,
+          "display_name": "Cancelled Opportunities",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Number of opportunities whose normalized status is Cancelled.",
+          "children": []
+        },
+        {
+          "id": "a6729976-78e1-42a5-bb5b-a6854e2156bc",
+          "is_selected": true,
+          "display_name": "Duplicate Candidate Opportunities",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Number of opportunities currently flagged as potential cross-source duplicates.",
+          "children": []
+        },
+        {
+          "id": "e5eef717-c86c-4ace-a263-a48abb944af5",
+          "is_selected": true,
+          "display_name": "Estimated Opportunity Value",
+          "type": "semantic_model.measure",
+          "data_type": "Double",
+          "description": "Total estimated value of opportunities with populated estimated values.",
+          "children": []
+        },
+        {
+          "id": "8ebc8d58-7f3b-4360-bd8e-4504eb7e2569",
+          "is_selected": true,
+          "display_name": "Average Estimated Value",
+          "type": "semantic_model.measure",
+          "data_type": "Double",
+          "description": "Average estimated value across opportunities with populated values.",
+          "children": []
+        },
+        {
+          "id": "befc7ab9-c5b6-478d-bd5c-7cccb3092033",
+          "is_selected": true,
+          "display_name": "Average Days To Close",
+          "type": "semantic_model.measure",
+          "data_type": "Double",
+          "description": "Average number of days between opportunity publication and closing.",
+          "children": []
+        },
+        {
+          "id": "493dd8b8-b416-403f-87da-9d64725858ff",
+          "is_selected": true,
+          "display_name": "Opportunities Missing Category",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Number of opportunities where a usable procurement category is missing.",
+          "children": []
+        },
+        {
+          "id": "34725065-ad0a-4c8a-a008-895f53e78b3c",
+          "is_selected": true,
+          "display_name": "Distinct Buyers",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Number of distinct buyer organizations represented by opportunities.",
+          "children": []
+        },
+        {
+          "id": "9cea31e6-17b6-4193-9eba-345b7f449100",
+          "is_selected": true,
+          "display_name": "Distinct Sources",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Number of distinct procurement source systems represented by opportunities.",
+          "children": []
+        },
+        {
+          "id": "229f7833-0244-49d4-83b7-39a955217706",
+          "is_selected": true,
+          "display_name": "Closing Opportunity Count",
+          "type": "semantic_model.measure",
+          "data_type": "Int64",
+          "description": "Opportunity count evaluated using Closing Date instead of Published Date.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "72e05236-f657-4ab0-b2f7-5e7eafeaa9d1",
+      "is_selected": true,
+      "display_name": "Duplicate Candidates",
+      "type": "semantic_model.table",
+      "description": "Cross-source opportunity records identified as potential duplicates for review. Candidate status does not mean the records are confirmed duplicates.",
+      "children": [
+        {
+          "id": "bc893506-3788-4ddb-985a-226b8ff63192",
+          "is_selected": true,
+          "display_name": "Source Code",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Procurement source code associated with the duplicate candidate.",
+          "children": []
+        },
+        {
+          "id": "f370c5d3-2111-44b7-a2d6-1b4514d903a7",
+          "is_selected": true,
+          "display_name": "Opportunity ID",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Source-facing business identifier for the duplicate candidate.",
+          "children": []
+        },
+        {
+          "id": "65a30572-a29b-49a8-a8d5-c4aa9cc1f043",
+          "is_selected": true,
+          "display_name": "Opportunity",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Title of the procurement opportunity identified as a possible duplicate.",
+          "children": []
+        },
+        {
+          "id": "3b8920e5-647b-4089-8ba7-8a43403a2952",
+          "is_selected": true,
+          "display_name": "Buyer",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "Buyer organization associated with the duplicate candidate.",
+          "children": []
+        },
+        {
+          "id": "44a41632-ceee-418a-ba36-dfb65a6b46c2",
+          "is_selected": true,
+          "display_name": "Published Date",
+          "type": "semantic_model.column",
+          "data_type": "DateTime",
+          "description": "Publication date of the potential duplicate opportunity record.",
+          "children": []
+        },
+        {
+          "id": "3d27e2b6-af53-4597-b722-592c1859017d",
+          "is_selected": true,
+          "display_name": "Potential Duplicate",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": "Indicates that the record is a possible cross-source duplicate requiring review.",
+          "children": []
+        }
+      ]
+    }
+  ]
+}
