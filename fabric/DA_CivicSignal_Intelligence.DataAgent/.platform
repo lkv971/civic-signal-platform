@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "DataAgent",
-    "displayName": "DA_CivicSignal_Intelligence"
+    "displayName": "DA_CivicSignal_Intelligence",
+    "description": "Synthetic procurement-intelligence data agent demonstrating governed semantic-model grounding, AI instructions, Verified Answers, and Fabric Data Agent patterns for the Civic Signal public reference implementation."
   },
   "config": {
     "version": "2.0",
