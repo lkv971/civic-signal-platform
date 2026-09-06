@@ -1,0 +1,4 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/publishInfo/1.0.0/schema.json",
+  "description": "Synthetic public-procurement intelligence data agent demonstrating governed semantic-model grounding, Prep for AI schema curation, AI instructions, Verified Answers, and Fabric Data Agent integration for the Civic Signal technical portfolio."
+}
